@@ -58,7 +58,7 @@ var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
 function listFunctions(bot, incomingMessage) {
   bot.reply(incomingMessage, 'I respond to the following commands: help, what is your name, roll call, role call, hello demo-bot, hello demobot, lets talk about the beatles, ask me an interesting question');
 }
-botListener.hears(['help'], taggedMessage, listFunctions);
+botListener.hears(['help'], untaggedMessage, listFunctions);
 
 function sayBotName(bot, incomingMessage) {
   bot.reply(incomingMessage, 'my name is demo-bot');
@@ -109,7 +109,7 @@ var sayBotIntroduction = function(bot, incomingMessage) {
 
   });
 }
-botListener.hears(['hello demo-bot', 'hello demobot'], untaggedMessage, sayBotIntroduction);
+botListener.hears(['hello demo-bot', 'hello demobot'], taggedMessage, sayBotIntroduction);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -187,7 +187,7 @@ endBeatlesConversation = function(response, convo) {
    convo.say("I guess I prefer the Rolling Stones.");
 }
 
-botListener.hears(['lets talk about the beatles'], untaggedMessage, askAboutFavoriteBeatle);
+botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavoriteBeatle);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
