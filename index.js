@@ -184,7 +184,8 @@ askAboutFavoriteBeatlesSongs = function(response, convo) {
 }
 
 endBeatlesConversation = function(response, convo) {
-   convo.say("I guess I prefer the Rolling Stones.");
+   convo.say("Meh.");
+   convo.say("I guess I'm a Rolling Stones guy.");
 }
 
 botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavoriteBeatle);
