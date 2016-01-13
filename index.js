@@ -109,7 +109,7 @@ var sayBotIntroduction = function(bot, incomingMessage) {
 
   });
 }
-botListener.hears(['hello demo-bot', 'hello demobot'], taggedMessage, sayBotIntroduction);
+botListener.hears(['hello demobot'], taggedMessage, sayBotIntroduction);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
