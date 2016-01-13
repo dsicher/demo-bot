@@ -1,0 +1,15 @@
+{
+  "name": "clock-bot",
+  "version": "1.0.0",
+  "description": "A demo bot, showcasing the botkit API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "token=xoxb-18347859332-oPhqPD4M6mmprjHhbikRo1oe node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "botkit": "0.0.5"
+  }
+}
