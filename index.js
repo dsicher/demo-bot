@@ -21,28 +21,12 @@ var bot = botListener.spawn({
     token: process.env.token
 }).startRTM();
 
-// botListener.setupWebserver(process.env.PORT,function(err,express_webserver) {
-//   botListener.createWebhookEndpoints(express_webserver);
-// });
+botListener.setupWebserver(process.env.PORT,function(err,express_webserver) {
+  botListener.createWebhookEndpoints(express_webserver);
+});
 
 var taggedMessage = 'direct_message,direct_mention,mention';
 var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
-
-/*-------------------------------------------------------------------
-//
-//                     Local Storage Defaults
-//             -- PUT ANY LOCAL STORAGE OPTIONS HERE --
-//
-//-----------------------------------------------------------------*/
-
-var defaultUser = function(id) {
-return {
-    id: id,
-    timerIsActive: false,
-    timerStartTime: 0,
-    timerStopTime: 0
-  }
-};
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -57,7 +41,7 @@ return {
 //     TIP: Use descriptive, active names like 'sayBotName'
 //
 //  || function sayBotName(bot, incomingMessage) {
-//  ||   bot.reply(incomingMessage, 'my name is protobot');
+//  ||   bot.reply(incomingMessage, 'my name is demo-bot');
 //  || }
 //
 //  2: Tell your bot what to listen for.
@@ -71,87 +55,20 @@ return {
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
+function listFunctions(bot, incomingMessage) {
+  bot.reply(incomingMessage, 'I respond to the following commands: help, what is your name, roll call, role call, hello demo-bot, hello demobot, lets talk about the beatles, ask me an interesting question');
+}
+botListener.hears(['help'], taggedMessage, listFunctions);
+
+function sayBotName(bot, incomingMessage) {
+  bot.reply(incomingMessage, 'my name is demo-bot');
+}
+botListener.hears(['what is your name'], taggedMessage, sayBotName);
+
 function reportForDuty(bot, incomingMessage) {
-  bot.reply(incomingMessage, '*tick* *tock* *tick* *tock*');
+  bot.reply(incomingMessage, 'demo-bot present');
 }
 botListener.hears(['roll call','role call'], untaggedMessage, reportForDuty);
-
-function sayCurrentTime(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'ding it is ' + (((new Date().getUTCHours()-9)%12)+1) + ' oclock');
-}
-botListener.hears(['what time is it'], untaggedMessage, sayCurrentTime);
-
-var happyHours = ['Anchorage', 'Los Angeles', 'Phoenix', 'Winnipeg', 'Havana', 'Halifax', 'Buenos Aires', 'Sao Paulo', 'Rio de Janeiro', 'Reykjavik', 'Algiers', 'Cairo', 'Minsk', 'Dubai', 'Islamabad', 'Dhaka', 'Bangkok', 'Beijing', 'Tokyo', 'Brisbane', 'Melbourne', 'Anadyr', 'Auckland', 'Kiritimati']
-function sayCurrentHappyHour(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'its always happy hour somewhere! right now its happy hour in: ' + happyHours[(new Date().getUTCHours()-8)%24]);
-}
-botListener.hears(['drink', 'thirsty', 'happy'], untaggedMessage, sayCurrentHappyHour);
-
-function startTimer(bot, incomingMessage) {
-    botListener.storage.users.get(incomingMessage.user,function(err, user) {
-        if (!user) {
-            user = defaultUser(incomingMessage.user);
-        }
-        if (user.timerIsActive===false) {
-          user.timerIsActive = true;
-          user.timerStartTime = new Date();
-          botListener.storage.users.save(user,function(err, id) {
-            bot.reply(incomingMessage,'Timer started.');
-          });
-        } else {
-          bot.reply(incomingMessage, 'You already have a timer running.');
-        }
-    });
-}
-botListener.hears(['start timer'],taggedMessage, startTimer);
-
-function sayCurrentTimerTime(bot, incomingMessage) {
-    botListener.storage.users.get(incomingMessage.user,function(err, user) {
-        if (!user) {
-            user = defaultUser(incomingMessage.user);
-        }
-        if (user.timerIsActive===true) {
-          bot.reply(incomingMessage,'Current timer has been running for ' + (new Date() - user.timerStartTime).toString() + 'ms');
-        } else {
-          bot.reply(incomingMessage, 'You do not have a timer running.');
-        }
-    });
-}
-botListener.hears(['current timer'], taggedMessage, sayCurrentTimerTime);
-
-function stopCurrentTimer(bot, incomingMessage) {
-    botListener.storage.users.get(incomingMessage.user,function(err, user) {
-        if (!user) {
-            user = defaultUser(incomingMessage.user);
-        }
-        if (user.timerIsActive===true) {
-          user.timerIsActive = false;
-          user.timerStopTime = new Date();
-          botListener.storage.users.save(user,function(err, id) {
-            bot.reply(incomingMessage,'Timer was stopped after ' + (user.timerStopTime - user.timerStartTime).toString() + 'ms');
-          });
-        } else {
-          bot.reply(incomingMessage, 'You do not have a timer running.');
-        }
-    });
-}
-botListener.hears(['stop timer'], taggedMessage, stopCurrentTimer);
-
-var sayPreviousTimerTime = function(bot, incomingMessage) {
-    botListener.storage.users.get(incomingMessage.user,function(err, user) {
-        if (!user) {
-            user = defaultUser(incomingMessage.user);
-        }
-        if (user.timerIsActive===false && user.timerStartTime && user.timerStopTime) {
-          bot.reply(incomingMessage,'Your last timer ran for ' + (user.timerStopTime - user.timerStartTime).toString() + 'ms');
-        } else if(!user.timerStartTime) {
-          bot.reply(incomingMessage, 'You have never run a timer.');
-        } else {
-          bot.reply(incomingMessage, 'You have a timer running currently.');
-        }
-    });
-}
-botListener.hears(['previous timer'], taggedMessage, sayPreviousTimerTime);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -185,15 +102,14 @@ botListener.hears(['previous timer'], taggedMessage, sayPreviousTimerTime);
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
-var sayBotIntruction = function(bot, incomingMessage) {
+var sayBotIntroduction = function(bot, incomingMessage) {
   bot.startConversation(incomingMessage, function(err,convo) {
     convo.say('Howdy Partner!');
     convo.say('You\'re my favorite deputy!');
 
   });
 }
-botListener.hears(['hi woody'], taggedMessage, sayBotIntruction);
-
+botListener.hears(['hello demo-bot', 'hello demobot'], untaggedMessage, sayBotIntroduction);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -273,85 +189,95 @@ endBeatlesConversation = function(response, convo) {
 
 botListener.hears(['lets talk about the beatles'], untaggedMessage, askAboutFavoriteBeatle);
 
-questionWithMultipleResponses = function(response, convo) { 
-  convo.ask("Would you like fries with that?", [
-      {
-        pattern: bot.utterances.yes,
-        callback: function(response,convo) {
-          convo.say('Great! Coming right up...');
-          // do something else...
-          convo.next();
+/*-------------------------------------------------------------------------------------------------------------
+//
+//                                          Bot Logic Part 4: startConversation() and ask()
+//                           -- WRITE RICH INTERACTIONS BY WRITING QUESTIONS AND WAITING FOR RESPONSES --
+//
+//                                                      Instructions:
+//
+//  1: Write your question, leave your action OPEN.
+//
+//  || function askAboutLincolnAndGandhi(response, convo) {
+//  ||   bot.startConversation(incomingMessage, function(err,convo) {
+//  ||    convo.ask("Who would win in a fight: Lincoln or Gandhi?", [
+//  ||
+//  || // question continues in step 2...
+//
+//  2: Write the responses you will accept, and what you will do when the response is received.
+//
+//     TIP: `pattern` can be one of three choices: a single word, a pattern to match, or an utterance
+//     TIP: An utterance is a predefined set of responses. Botkit provides yes and no.
+//     TIP: A single word pattern looks like: `pattern: 'answer'`
+//     TIP: A matching pattern looks like: `pattern: /first|second/ig` which means "first or second, ignore case and look everywhere"
+//     TIP: An utterance pattern looks like: `pattern: bot.utterances.yes` which means "anything that sounds like yes, ex: yeah, y, yes"
+//
+//  || // continued from step 1...
+//  ||
+//  ||       {
+//  ||         pattern: /lincoln/ig,
+//  ||         callback: function(response,convo) {
+//  ||           convo.say('How could you say that? You animal.');
+//  ||           convo.next();
+//  ||         }
+//  ||       },
+//
+//  3: End your question with a catchall response, and close the action
+//
+//     TIP: Your bot can repeat the question to prompt the user to give an expected response
+//
+//  || // continued from step 2...
+//  ||
+//  ||       {
+//  ||         default: true, // Use this action if the patterns are not matched
+//  ||         callback: function(response,convo) {
+//  ||           convo.say("But seriously.");
+//  ||           convo.repeat();
+//  ||           convo.next();
+//  ||         }
+//  ||       }
+//  ||     ]);
+//  ||   });
+//  || }
+//  ||
+//
+//  4: Tell your bot what to listen for.
+//
+//                                     (what to listen for)                (tagged or untagged) (your action name)
+//                                             |                                    |                  |
+//                                             v                                    v                  v
+//  || botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
+//
+//  ex: botListener.hears(['ask me an interesting question'], taggedMessage, askAboutLincolnAndGandhi);
+//
+//-----------------------------------------------------------------------------------------------------------*/
 
-        }
-      },
+function askAboutLincolnAndGandhi(response, convo) {
+  bot.startConversation(incomingMessage, function(err,convo) {
+  convo.ask("Who would win in a fight: Lincoln or Gandhi?", [
       {
-        pattern: bot.utterances.no,
+        pattern: /lincoln/ig,
         callback: function(response,convo) {
-          convo.say('Who doesn\'t like fries?');
-          // do something else...
+          convo.say('How could you say that? You animal.');
           convo.next();
         }
       },
       {
-        pattern: /one|two/ig,
+        pattern: /gandhi/ig,
         callback: function(response,convo) {
-          convo.say('thats not many fries');
-          // do something else...
-          convo.next();
-        }
-      },
-      {
-        pattern: 'three',
-        callback: function(response,convo) {
-          convo.say('FRIES AND PIZZA DO NOT MIX');
-          // do something else...
+          convo.say('But Lincoln had a cooler hat.');
           convo.next();
         }
       },
       {
         default: true, // IF THE PATTERNS ARE NOT MATCHED
         callback: function(response,convo) {
-          // just repeat the question
+          convo.say("But seriously.");
           convo.repeat();
           convo.next();
         }
       }
     ]);
+  });
 }
-
-
-botListener.hears(['hello','hi'],'direct_message,direct_mention,mention',function(bot, incomingMessage) {
-    botListener.storage.users.get(incomingMessage.user,function(err, user) {
-        if (user && user.name) {
-            bot.reply(incomingMessage,'**cough** ' + user.name + '!!');
-        } else {
-            bot.reply(incomingMessage,'**cough**');
-        }
-    });
-});
-
-botListener.hears(['shutdown'],'direct_message,direct_mention,mention',function(bot, incomingMessage) {
-
-    bot.startConversation(incomingMessage,function(err, convo) {
-        convo.ask('Are you sure you want me to shutdown?',[
-            {
-                pattern: bot.utterances.yes,
-                callback: function(response, convo) {
-                    convo.say('Bye!');
-                    convo.next();
-                    setTimeout(function() {
-                        process.exit();
-                    },3000);
-                }
-            },
-        {
-            pattern: bot.utterances.no,
-            default: true,
-            callback: function(response, convo) {
-                convo.say('*Phew!*');
-                convo.next();
-            }
-        }
-        ]);
-    });
-});
+botListener.hears(['ask me an interesting question'], taggedMessage, askAboutLincolnAndGandhi);
