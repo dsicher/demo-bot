@@ -56,7 +56,7 @@ var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
 //-----------------------------------------------------------------------------------------------------------*/
 
 function listFunctions(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'I respond to the following commands: help, what is your name, roll call, role call, hello demo-bot, hello demobot, lets talk about the beatles, ask me an interesting question');
+  bot.reply(incomingMessage, 'I respond to the following commands: help, what is your name, roll call, role call, hello demobot, lets talk about the beatles, ask me an interesting question');
 }
 botListener.hears(['help'], untaggedMessage, listFunctions);
 
