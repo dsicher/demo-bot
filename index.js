@@ -252,7 +252,7 @@ botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavori
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
-function askAboutLincolnAndGandhi(response, convo) {
+function askAboutLincolnAndGandhi(bot, incomingMessage) {
   bot.startConversation(incomingMessage, function(err,convo) {
   convo.ask("Who would win in a fight: Lincoln or Gandhi?", [
       {
