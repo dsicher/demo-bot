@@ -193,9 +193,10 @@ demobot.botListener.hears(['lets talk about the beatles'], taggedMessage, askAbo
 //  2: Write the responses you will accept, and what you will do when the response is received.
 //
 //     TIP: `pattern` can be one of three choices: a single word, a pattern to match, or an utterance
-//     TIP: An utterance is a predefined set of responses. Botkit provides yes and no.
+//     TIP: An utterance is a predefined set of responses. Botkit provides `yes` and `no`.
 //     TIP: A single word pattern looks like: `pattern: 'answer'`
 //     TIP: A matching pattern looks like: `pattern: /first|second/ig` which means "first or second, ignore case and look everywhere"
+//     TIP: A matching pattern is called a regular expression, use a site like http://regexr.com/ to learn more and build smarter patterns.
 //     TIP: An utterance pattern looks like: `pattern: demobot.bot.utterances.yes` which means "anything that sounds like yes, ex: yeah, y, yes"
 //
 //  || // continued from step 1...
