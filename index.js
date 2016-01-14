@@ -23,6 +23,7 @@ var botTriggers = ['help',
 //---------------------------------------------------------------------------------------------------------*/
 
 require('dotenv').load();
+var http = require('http');
 
 if (!process.env.token) {
     console.log('Error: Specify token in environment');
