@@ -28,8 +28,6 @@ var demobot = new protobot({
   debug: true
 });
 
-demobot.botListener.on('tick', function() {});
-
 /*-------------------------------------------------------------------------------------------------------------
 //
 //                                            BOT CONFIGS
@@ -37,8 +35,6 @@ demobot.botListener.on('tick', function() {});
 //-----------------------------------------------------------------------------------------------------------*/
 
 demobot.rollCallResponse = function () {
-  console.log('rollCallResponse override');
-  console.log('name is: ' + demobot.botName);
   return demobot.botName + ' reporting for duty';
 }
 
