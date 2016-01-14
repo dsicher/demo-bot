@@ -265,7 +265,7 @@ function askAboutLincolnAndGandhi(bot, incomingMessage) {
             {
               pattern: demobot.bot.utterances.no,
               callback: function(response,convo) {
-                convo.say('Gandhi didn\'t even have a hat. Clearly you\'re not a history buff');
+                convo.say('Gandhi didn\'t even have a hat. Clearly you\'re not a history buff.');
                 convo.next();
               }
             }
