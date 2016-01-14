@@ -256,21 +256,20 @@ function askAboutLincolnAndGandhi(bot, incomingMessage) {
           convo.say('We can agree to disagree.');
           convo.ask('But Lincoln had a cooler hat, right?', [
             {
-              {
-                pattern: demobot.bot.utterances.yes,
-                callback: function(response,convo) {
-                  convo.say('And his beard was LEGENDARY.');
-                  convo.next();
-                }
-              },
-              {
-                pattern: demobot.bot.utterances.no,
-                callback: function(response,convo) {
-                  convo.say('Gandhi didn\'t even have a hat. Clearly you\'re not a history buff');
-                  convo.next();
-                }
+              pattern: demobot.bot.utterances.yes,
+              callback: function(response,convo) {
+                convo.say('And his beard was LEGENDARY.');
+                convo.next();
               }
-            }]);
+            },
+            {
+              pattern: demobot.bot.utterances.no,
+              callback: function(response,convo) {
+                convo.say('Gandhi didn\'t even have a hat. Clearly you\'re not a history buff');
+                convo.next();
+              }
+            }
+          ]);
         }
       },
       {
