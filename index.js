@@ -18,7 +18,7 @@
 //  These expressions will be translated into environment variables that will be available to you app.
 //  You can access them in the following manner:
 //
-//    var secret_api_key = process.env.SECRET_API_KEY; 
+//    var secret_api_key = process.env.SECRET_API_KEY;
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
