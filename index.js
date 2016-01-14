@@ -270,6 +270,7 @@ function askAboutLincolnAndGandhi(bot, incomingMessage) {
               }
             }
           ]);
+          convo.next();
         }
       },
       {
