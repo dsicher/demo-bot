@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------------------------*/
 
 var botName = 'demo-bot';
-var botFunctions = ['help',
+var botTriggers = ['help',
                     'roll call',
                     'role call',
                     'what is your name',
@@ -46,7 +46,7 @@ var taggedMessage = 'direct_message,direct_mention,mention';
 var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
 
 function listFunctions(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'I respond to the following commands: ' + botFunctions.join(", "));
+  bot.reply(incomingMessage, 'I respond to the following commands: `' + botTriggers.join(", ") + '`');
 }
 botListener.hears(['help'], untaggedMessage, listFunctions);
 
@@ -57,7 +57,11 @@ botListener.hears(['roll call','role call'], untaggedMessage, reportForDuty);
 
 /*-----------------------------------------------------------------------------------------------------------
 //
-//                                 BOILER-PLATE OVER: INSERT BOT HERE
+//                                         !BOILER-PLATE OVER!
+//                                           INSERT BOT HERE
+//
+//                                            | | | | | | |
+//                                            V V V V V V V
 //
 //---------------------------------------------------------------------------------------------------------*/
 
