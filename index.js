@@ -23,7 +23,10 @@
 //-----------------------------------------------------------------------------------------------------------*/
 
 var protobot = require('proto-bot');
-var demobot = new protobot();
+var demobot = new protobot({
+  botName: 'demo-bot',
+  debug: true
+});
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -31,10 +34,8 @@ var demobot = new protobot();
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
-demobot.botName = 'demo-bot';
-
 demobot.rollCallResponse = function () {
-  return demobot.botName + ' reporting for duty';
+  return demobot.botName + ' reporting for dooty';
 }
 
 /*-------------------------------------------------------------------------------------------------------------
