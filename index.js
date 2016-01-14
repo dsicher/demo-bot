@@ -46,7 +46,7 @@ var taggedMessage = 'direct_message,direct_mention,mention';
 var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
 
 function listFunctions(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'I respond to the following commands: `' + botTriggers.join(", ") + '`');
+  bot.reply(incomingMessage, 'I respond to the following commands: `' + botTriggers.join("`, `") + '`');
 }
 botListener.hears(['help'], untaggedMessage, listFunctions);
 
