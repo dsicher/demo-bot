@@ -6,7 +6,7 @@ var demobot = require('proto-bot');
 //
 //---------------------------------------------------------------------------------------------------------*/
 
-demobot.botName = 'demo-bot';
+demobot.renameBot('demo-bot');
 
 demobot.addTriggers([
                     'what is your name',
