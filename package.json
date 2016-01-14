@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "token=xoxb-18441261987-PfN6HCc7L6kVHqTU3eTS1Csc node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "botkit": "0.0.5"
+    "botkit": "0.0.5",
+    "dotenv": "^1.2.0"
   }
 }

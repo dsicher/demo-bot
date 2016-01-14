@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------------------------------------
 //
-//                                          SIMPLE PROTO CONFIGS
+//                                          SIMPLE BOT CONFIGS
 //
 //---------------------------------------------------------------------------------------------------------*/
 
@@ -22,10 +22,38 @@ var botTriggers = ['help',
 //
 //---------------------------------------------------------------------------------------------------------*/
 
+require('dotenv').load();
+
 if (!process.env.token) {
     console.log('Error: Specify token in environment');
     process.exit(1);
 }
+
+var keepAliveFunc = function() {
+  http.get(process.env.KEEPALIVE_URL, function(res) {
+    console.log(`Keep alive response: ${res.statusCode}`);
+  }).on('error', function(e) {
+    console.log(`Got error: ${e.message}`);
+  });
+}
+
+var run = function() {
+  if (keepAliveIntervalId === undefined) {
+    keepAliveFunc();
+    var keepAliveIntervalId = setInterval(function() {
+      var date = new Date();
+      console.log(`Current hour of the day is: ${date.getHours()}`);
+      if (date.getHours() > 22) {
+        console.log('***********************')
+        console.log('Letting go, sleepy time');
+        console.log('***********************')
+        clearInterval(keepAliveIntervalId)
+      } else {
+        keepAliveFunc();
+      };
+    }, 300000)
+  }
+}();
 
 var Botkit = require('botkit');
 var os = require('os');
@@ -37,10 +65,6 @@ var botListener = Botkit.slackbot({
 var bot = botListener.spawn({
     token: process.env.token
 }).startRTM();
-
-botListener.setupWebserver(process.env.PORT,function(err,express_webserver) {
-  botListener.createWebhookEndpoints(express_webserver);
-});
 
 var taggedMessage = 'direct_message,direct_mention,mention';
 var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
@@ -54,6 +78,10 @@ function reportForDuty(bot, incomingMessage) {
   bot.reply(incomingMessage, botName + ' present');
 }
 botListener.hears(['roll call','role call'], untaggedMessage, reportForDuty);
+
+botListener.setupWebserver(process.env.PORT,function(err,express_webserver) {
+  botListener.createWebhookEndpoints(express_webserver);
+});
 
 /*-----------------------------------------------------------------------------------------------------------
 //
