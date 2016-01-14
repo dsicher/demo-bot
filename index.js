@@ -18,7 +18,7 @@
 //  These expressions will be translated into environment variables that will be available to you app.
 //  You can access them in the following manner:
 //
-//    var secret_api_key = process.env.SECRET_API_KEY; 
+//    var secret_api_key = process.env.SECRET_API_KEY;
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
@@ -28,6 +28,8 @@ var demobot = new protobot({
   debug: true
 });
 
+demobot.botListener.on('tick', function() {});
+
 /*-------------------------------------------------------------------------------------------------------------
 //
 //                                            BOT CONFIGS
@@ -35,7 +37,9 @@ var demobot = new protobot({
 //-----------------------------------------------------------------------------------------------------------*/
 
 demobot.rollCallResponse = function () {
-  return demobot.botName + ' reporting for dooty';
+  console.log('rollCallResponse override');
+  console.log('name is: ' + demobot.botName);
+  return demobot.botName + ' reporting for duty';
 }
 
 /*-------------------------------------------------------------------------------------------------------------
