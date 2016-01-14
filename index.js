@@ -269,9 +269,8 @@ function askAboutLincolnAndGandhi(bot, incomingMessage) {
                   convo.say('Gandhi didn\'t even have a hat. Clearly you\'re not a history buff');
                   convo.next();
                 }
-              },
+              }
             }]);
-          convo.next();
         }
       },
       {
