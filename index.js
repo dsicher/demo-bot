@@ -30,10 +30,10 @@ var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                                               Bot Logic Part 1: reply()
-//                                     -- WRITE YOUR BOT'S SIMPLE RESPONSES WITH REPLAY --
+//                                      Bot Logic Part 1: reply()
+//                            -- WRITE YOUR BOT'S SIMPLE RESPONSES WITH REPLAY --
 //
-//                                                      Instructions:
+//                                            Instructions:
 //
 //  1: Write your bot action and give it a name.
 //
@@ -72,10 +72,10 @@ botListener.hears(['roll call','role call'], untaggedMessage, reportForDuty);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                                        Bot Logic Part 2: startConversation() and say()
-//                                -- WRITE YOUR BOT'S MULTI-LINE RESPONSES WITH CONVERSATIONS --
+//                               Bot Logic Part 2: startConversation() and say()
+//                       -- WRITE YOUR BOT'S MULTI-LINE RESPONSES WITH CONVERSATIONS --
 //
-//                                                      Instructions:
+//                                             Instructions:
 //
 //  1: Write your conversation action and give it a name.
 //
@@ -113,10 +113,10 @@ botListener.hears(['hello demobot'], taggedMessage, sayBotIntroduction);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                                          Bot Logic Part 3: startConversation() and ask()
-//                           -- WRITE RICH INTERACTIONS BY WRITING QUESTIONS AND WAITING FOR RESPONSES --
+//                           Bot Logic Part 3: startConversation() and ask() pt. 1
+//              -- DEVELOP RICH INTERACTIONS BY WRITING QUESTIONS AND WAITING FOR RESPONSES --
 //
-//                                                      Instructions:
+//                                           Instructions:
 //
 //  1: Write your first question and give it a name.
 //
@@ -192,10 +192,10 @@ botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavori
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                                          Bot Logic Part 4: startConversation() and ask()
-//                           -- WRITE RICH INTERACTIONS BY WRITING QUESTIONS AND WAITING FOR RESPONSES --
+//                          Bot Logic Part 4: startConversation() and ask() pt. 2
+//                          -- IMPROVE YOUR CONVERSATIONS WITH BRANCHING PATHS --
 //
-//                                                      Instructions:
+//                                            Instructions:
 //
 //  1: Write your question, leave your action OPEN.
 //
