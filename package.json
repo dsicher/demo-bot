@@ -1,10 +1,9 @@
 {
   "name": "demo-bot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A demo bot, showcasing the botkit API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "author": "",
