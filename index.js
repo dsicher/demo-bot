@@ -1,24 +1,6 @@
-
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                                Bot Logic Part 0: Environment Config
-//                                    -- Required configuartion --
-//
-//                                            Instructions:
-//
-//  1: Create a file called .env (including the dot prefix) and place it in the root of this project.
-//
-//  2: It should at a minimum contain the following variable definitions:
-//
-//     PORT=8080
-//     SECRET_API_KEY=WezikJe
-//     token=xoxb-1844uuuuuuu-PfN6HCc7L6kVHqTU3fffffff
-//
-//
-//  These expressions will be translated into environment variables that will be available to you app.
-//  You can access them in the following manner:
-//
-//    var secret_api_key = process.env.SECRET_API_KEY;
+//                                            BOT CONFIGS
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
@@ -27,12 +9,6 @@ var demobot = new protobot({
   botName: 'demo-bot',
   debug: true
 });
-
-/*-------------------------------------------------------------------------------------------------------------
-//
-//                                            BOT CONFIGS
-//
-//-----------------------------------------------------------------------------------------------------------*/
 
 demobot.rollCallResponse = function () {
   return demobot.botName + ' reporting for duty';
