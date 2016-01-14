@@ -1,98 +1,23 @@
+var demobot = require('proto-bot');
+
 /*-----------------------------------------------------------------------------------------------------------
 //
 //                                          SIMPLE BOT CONFIGS
 //
 //---------------------------------------------------------------------------------------------------------*/
 
-var botName = 'demo-bot';
-var botTriggers = ['help',
-                    'roll call',
-                    'role call',
+demobot.botName = 'demo-bot';
+
+demobot.addTriggers([
                     'what is your name',
                     'hello demo-bot',
                     'hello demobot',
                     'lets talk about the beatles',
                     'ask me an interesting question'
-                    ];
+                    ]);
 
-/*-----------------------------------------------------------------------------------------------------------
-//
-//                                        Proto-bot Boilerplate
-//                                          -- DO NOT EDIT --
-//
-//---------------------------------------------------------------------------------------------------------*/
-
-require('dotenv').load();
-var http = require('http');
-
-if (!process.env.token) {
-    console.log('Error: Specify token in environment');
-    process.exit(1);
-}
-
-var keepAliveFunc = function() {
-  http.get(process.env.KEEPALIVE_URL, function(res) {
-    console.log(`Keep alive response: ${res.statusCode}`);
-  }).on('error', function(e) {
-    console.log(`Got error: ${e.message}`);
-  });
-}
-
-var run = function() {
-  if (keepAliveIntervalId === undefined) {
-    keepAliveFunc();
-    var keepAliveIntervalId = setInterval(function() {
-      var date = new Date();
-      console.log(`Current hour of the day is: ${date.getHours()}`);
-      if (date.getHours() > 22) {
-        console.log('***********************')
-        console.log('Letting go, sleepy time');
-        console.log('***********************')
-        clearInterval(keepAliveIntervalId)
-      } else {
-        keepAliveFunc();
-      };
-    }, 300000)
-  }
-}();
-
-var Botkit = require('botkit');
-var os = require('os');
-
-var botListener = Botkit.slackbot({
-    debug: true,
-});
-
-var bot = botListener.spawn({
-    token: process.env.token
-}).startRTM();
-
-var taggedMessage = 'direct_message,direct_mention,mention';
-var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
-
-function listFunctions(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'I respond to the following commands: `' + botTriggers.join("`, `") + '`');
-}
-botListener.hears(['help'], untaggedMessage, listFunctions);
-
-function reportForDuty(bot, incomingMessage) {
-  bot.reply(incomingMessage, botName + ' present');
-}
-botListener.hears(['roll call','role call'], untaggedMessage, reportForDuty);
-
-botListener.setupWebserver(process.env.PORT,function(err,express_webserver) {
-  botListener.createWebhookEndpoints(express_webserver);
-});
-
-/*-----------------------------------------------------------------------------------------------------------
-//
-//                                         !BOILER-PLATE OVER!
-//                                           INSERT BOT HERE
-//
-//                                            | | | | | | |
-//                                            V V V V V V V
-//
-//---------------------------------------------------------------------------------------------------------*/
+var taggedMessage = demobot.taggedMessage;
+var untaggedMessage = demobot.untaggedMessage;
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -107,7 +32,7 @@ botListener.setupWebserver(process.env.PORT,function(err,express_webserver) {
 //     TIP: Use descriptive, active names like 'sayBotName'
 //
 //  || function sayBotName(bot, incomingMessage) {
-//  ||   bot.reply(incomingMessage, 'my name is demo-bot');
+//  ||   demobot.bot.reply(incomingMessage, 'my name is demo-bot');
 //  || }
 //
 //  2: Tell your bot what to listen for.
@@ -115,18 +40,18 @@ botListener.setupWebserver(process.env.PORT,function(err,express_webserver) {
 //                                     (what to listen for)                (tagged or untagged) (your action name)
 //                                             |                                    |                  |
 //                                             v                                    v                  v
-//  || botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
+//  || demobot.botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
 //
-//  ex: botListener.hears(['what is your name'], taggedMessage, sayBotName);
+//  ex: demobot.botListener.hears(['what is your name'], taggedMessage, sayBotName);
 //
 //  3: You're first bot is officially ALIVE!
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
 function sayBotName(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'my name is demo-bot');
+  demobot.bot.reply(incomingMessage, 'my name is demo-bot');
 }
-botListener.hears(['what is your name'], taggedMessage, sayBotName);
+demobot.botListener.hears(['what is your name'], taggedMessage, sayBotName);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -143,7 +68,7 @@ botListener.hears(['what is your name'], taggedMessage, sayBotName);
 //     TIP: If you use quotation marks in your bot's conversations, escape them with a \
 //
 //  || var sayBotIntroduction = function(bot, incomingMessage) {
-//  ||   bot.startConversation(incomingMessage, function(err,convo) {
+//  ||   demobot.bot.startConversation(incomingMessage, function(err,convo) {
 //  ||     convo.say('Howdy Partner!');
 //  ||     convo.say('You\'re my favorite deputy!');
 //  ||   });
@@ -154,24 +79,24 @@ botListener.hears(['what is your name'], taggedMessage, sayBotName);
 //                                     (what to listen for)                (tagged or untagged) (your action name)
 //                                             |                                    |                  |
 //                                             v                                    v                  v
-//  || botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
+//  || demobot.botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
 //
-//  ex: botListener.hears(['hi woody'], taggedMessage, sayBotIntroduction);
+//  ex: demobot.botListener.hears(['hi woody'], taggedMessage, sayBotIntroduction);
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
 var sayBotIntroduction = function(bot, incomingMessage) {
-  bot.startConversation(incomingMessage, function(err,convo) {
+  demobot.bot.startConversation(incomingMessage, function(err,convo) {
     convo.say('Howdy Partner!');
     convo.say('You\'re my favorite deputy!');
 
   });
 }
-botListener.hears(['hello demobot'], taggedMessage, sayBotIntroduction);
+demobot.botListener.hears(['hello demo-bot', 'hello demobot'], taggedMessage, sayBotIntroduction);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                           Bot Logic Part 4: startConversation() and ask() pt. 1
+//                           Bot Logic Part 3: startConversation() and ask() pt. 1
 //              -- DEVELOP RICH INTERACTIONS BY WRITING QUESTIONS AND WAITING FOR RESPONSES --
 //
 //                                           Instructions:
@@ -180,11 +105,12 @@ botListener.hears(['hello demobot'], taggedMessage, sayBotIntroduction);
 //
 //     TIP: Your first question must have the startConversation() call
 //     TIP: Chain your questions together to create deep interactions
+//     TIP: In the first question, remember to use `bot` and `incomingMessage` as your action parameters
 //     TIP: Write each question as a separate function to keep your bot easy to read and maintain
 //     TIP: Put your .say() response inside the question to keep your bot easy to read and maintain
 //
 //  || askAboutFavoriteBeatle = function(bot, incomingMessage) {
-//  ||   bot.startConversation(incomingMessage, function(err,convo) {
+//  ||   demobot.bot.startConversation(incomingMessage, function(err,convo) {
 //  ||    convo.ask("Who is your favorite Beatle?", function(response, convo) {
 //  ||      convo.say(response.text + "?! He\'s ok I guess.");
 //  ||      askAboutFavoriteBeatlesSongs(response, convo);
@@ -202,8 +128,8 @@ botListener.hears(['hello demobot'], taggedMessage, sayBotIntroduction);
 //
 //  || askAboutFavoriteBeatlesSongs = function(response, convo) {
 //  ||    convo.ask("And what is your favorite Beatles song?", function(response, convo) {
-//  ||     endBeatlesConversation(response, convo);
-//  ||     convo.next();
+//  ||      endBeatlesConversation(response, convo);
+//  ||      convo.next();
 //  ||   });
 //  || }
 //
@@ -218,39 +144,40 @@ botListener.hears(['hello demobot'], taggedMessage, sayBotIntroduction);
 //                                     (what to listen for)                (tagged or untagged) (your action name)
 //                                             |                                    |                  |
 //                                             v                                    v                  v
-//  || botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
+//  || demobot.botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
 //
-//  ex: botListener.hears(['lets talk about the beatles'], untaggedMessage, askAboutFavoriteBeatle);
+//  ex: demobot.botListener.hears(['lets talk about the beatles'], untaggedMessage, askAboutFavoriteBeatle);
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
 askAboutFavoriteBeatle = function(bot, incomingMessage) {
-  bot.startConversation(incomingMessage, function(err,convo) {
-   convo.ask("Who is your favorite Beatle?", function(response, convo) {
-     convo.say(response.text + "?! He\'s ok I guess.");
-     askAboutFavoriteBeatlesSongs(response, convo);
-     convo.next();
-   });
+  demobot.bot.startConversation(incomingMessage, function(err,convo) {
+    convo.ask("Who is your favorite Beatle?", function(response, convo) {
+      convo.say(response.text + "?! He\'s ok I guess.");
+      askAboutFavoriteBeatlesSongs(response, convo);
+      convo.next();
+    });
   });
 }
 
 askAboutFavoriteBeatlesSongs = function(response, convo) {
-   convo.ask("And what is your favorite Beatles song?", function(response, convo) {
+  convo.ask("And what is your favorite Beatles song?", function(response, convo) {
     endBeatlesConversation(response, convo);
     convo.next();
   });
 }
 
 endBeatlesConversation = function(response, convo) {
-   convo.say("Meh.");
-   convo.say("I guess I'm a Rolling Stones guy.");
+  convo.say("Meh.");
+  convo.say("I guess I'm a Rolling Stones guy.");
+  convo.next();
 }
 
-botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavoriteBeatle);
+demobot.botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavoriteBeatle);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                          Bot Logic Part 5: startConversation() and ask() pt. 2
+//                          Bot Logic Part 4: startConversation() and ask() pt. 2
 //                          -- IMPROVE YOUR CONVERSATIONS WITH BRANCHING PATHS --
 //
 //                                            Instructions:
@@ -258,7 +185,7 @@ botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavori
 //  1: Write your question, leave your action OPEN.
 //
 //  || function askAboutLincolnAndGandhi(response, convo) {
-//  ||   bot.startConversation(incomingMessage, function(err,convo) {
+//  ||   demobot.bot.startConversation(incomingMessage, function(err,convo) {
 //  ||    convo.ask("Who would win in a fight: Lincoln or Gandhi?", [
 //  ||
 //  || // question continues in step 2...
@@ -269,7 +196,7 @@ botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavori
 //     TIP: An utterance is a predefined set of responses. Botkit provides yes and no.
 //     TIP: A single word pattern looks like: `pattern: 'answer'`
 //     TIP: A matching pattern looks like: `pattern: /first|second/ig` which means "first or second, ignore case and look everywhere"
-//     TIP: An utterance pattern looks like: `pattern: bot.utterances.yes` which means "anything that sounds like yes, ex: yeah, y, yes"
+//     TIP: An utterance pattern looks like: `pattern: demobot.bot.utterances.yes` which means "anything that sounds like yes, ex: yeah, y, yes"
 //
 //  || // continued from step 1...
 //  ||
@@ -280,15 +207,17 @@ botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavori
 //  ||           convo.next();
 //  ||         }
 //  ||       },
+//  ||
+//  || // question continues in step 3...
 //
-//  3: End your question with a catchall response, and close the action
+//  3: End your question with a catchall response, and close the action.
 //
-//     TIP: Your bot can repeat the question to prompt the user to give an expected response
+//     TIP: Your bot can repeat the question to prompt the user for an expected response
 //
 //  || // continued from step 2...
 //  ||
 //  ||       {
-//  ||         default: true, // Use this action if the patterns are not matched
+//  ||         default: true, // Use this callback if the patterns are not matched
 //  ||         callback: function(response,convo) {
 //  ||           convo.say("But seriously.");
 //  ||           convo.repeat();
@@ -305,14 +234,14 @@ botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavori
 //                                     (what to listen for)                (tagged or untagged) (your action name)
 //                                             |                                    |                  |
 //                                             v                                    v                  v
-//  || botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
+//  || demobot.botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
 //
-//  ex: botListener.hears(['ask me an interesting question'], taggedMessage, askAboutLincolnAndGandhi);
+//  ex: demobot.botListener.hears(['ask me an interesting question'], taggedMessage, askAboutLincolnAndGandhi);
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
 function askAboutLincolnAndGandhi(bot, incomingMessage) {
-  bot.startConversation(incomingMessage, function(err,convo) {
+  demobot.bot.startConversation(incomingMessage, function(err,convo) {
   convo.ask("Who would win in a fight: Lincoln or Gandhi?", [
       {
         pattern: /lincoln/ig,
@@ -339,4 +268,4 @@ function askAboutLincolnAndGandhi(bot, incomingMessage) {
     ]);
   });
 }
-botListener.hears(['ask me an interesting question'], taggedMessage, askAboutLincolnAndGandhi);
+demobot.botListener.hears(['ask me an interesting question'], taggedMessage, askAboutLincolnAndGandhi);
