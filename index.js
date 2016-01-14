@@ -35,8 +35,6 @@ var demobot = new protobot({
 //-----------------------------------------------------------------------------------------------------------*/
 
 demobot.rollCallResponse = function () {
-  console.log('rollCallResponse override');
-  console.log('name is: ' + demobot.botName);
   return demobot.botName + ' reporting for duty';
 }
 
