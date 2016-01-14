@@ -1,9 +1,26 @@
-/*-------------------------------------------------------------------
+/*-----------------------------------------------------------------------------------------------------------
 //
-//                      Proto-bot Boilerplate
-//                        -- DO NOT EDIT --
+//                                          SIMPLE PROTO CONFIGS
 //
-//-----------------------------------------------------------------*/
+//---------------------------------------------------------------------------------------------------------*/
+
+var botName = 'demo-bot';
+var botFunctions = ['help',
+                    'roll call',
+                    'role call',
+                    'what is your name',
+                    'hello demo-bot',
+                    'hello demobot',
+                    'lets talk about the beatles',
+                    'ask me an interesting question'
+                    ];
+
+/*-----------------------------------------------------------------------------------------------------------
+//
+//                                        Proto-bot Boilerplate
+//                                          -- DO NOT EDIT --
+//
+//---------------------------------------------------------------------------------------------------------*/
 
 if (!process.env.token) {
     console.log('Error: Specify token in environment');
@@ -28,10 +45,26 @@ botListener.setupWebserver(process.env.PORT,function(err,express_webserver) {
 var taggedMessage = 'direct_message,direct_mention,mention';
 var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
 
+function listFunctions(bot, incomingMessage) {
+  bot.reply(incomingMessage, 'I respond to the following commands: ' botFunctions.join(", "));
+}
+botListener.hears(['help'], untaggedMessage, listFunctions);
+
+function reportForDuty(bot, incomingMessage) {
+  bot.reply(incomingMessage, botName + ' present');
+}
+botListener.hears(['roll call','role call'], untaggedMessage, reportForDuty);
+
+/*-----------------------------------------------------------------------------------------------------------
+//
+//                                 BOILER-PLATE OVER: INSERT BOT HERE
+//
+//---------------------------------------------------------------------------------------------------------*/
+
 /*-------------------------------------------------------------------------------------------------------------
 //
 //                                      Bot Logic Part 1: reply()
-//                            -- WRITE YOUR BOT'S SIMPLE RESPONSES WITH REPLAY --
+//                                   -- YOUR BOT'S FIRST MESSAGE --
 //
 //                                            Instructions:
 //
@@ -53,22 +86,14 @@ var untaggedMessage = 'direct_message,direct_mention,mention,ambient';
 //
 //  ex: botListener.hears(['what is your name'], taggedMessage, sayBotName);
 //
+//  3: You're first bot is officially ALIVE!
+//
 //-----------------------------------------------------------------------------------------------------------*/
-
-function listFunctions(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'I respond to the following commands: help, what is your name, roll call, role call, hello demo-bot, hello demobot, lets talk about the beatles, ask me an interesting question');
-}
-botListener.hears(['help'], untaggedMessage, listFunctions);
 
 function sayBotName(bot, incomingMessage) {
   bot.reply(incomingMessage, 'my name is demo-bot');
 }
 botListener.hears(['what is your name'], taggedMessage, sayBotName);
-
-function reportForDuty(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'demo-bot present');
-}
-botListener.hears(['roll call','role call'], untaggedMessage, reportForDuty);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -113,7 +138,7 @@ botListener.hears(['hello demobot'], taggedMessage, sayBotIntroduction);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                           Bot Logic Part 3: startConversation() and ask() pt. 1
+//                           Bot Logic Part 4: startConversation() and ask() pt. 1
 //              -- DEVELOP RICH INTERACTIONS BY WRITING QUESTIONS AND WAITING FOR RESPONSES --
 //
 //                                           Instructions:
@@ -192,7 +217,7 @@ botListener.hears(['lets talk about the beatles'], taggedMessage, askAboutFavori
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                          Bot Logic Part 4: startConversation() and ask() pt. 2
+//                          Bot Logic Part 5: startConversation() and ask() pt. 2
 //                          -- IMPROVE YOUR CONVERSATIONS WITH BRANCHING PATHS --
 //
 //                                            Instructions:
