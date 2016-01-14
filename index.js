@@ -1,10 +1,10 @@
 var demobot = require('proto-bot');
 
-/*-----------------------------------------------------------------------------------------------------------
+/*-------------------------------------------------------------------------------------------------------------
 //
 //                                          SIMPLE BOT CONFIGS
 //
-//---------------------------------------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------------------------------------*/
 
 demobot.renameBot('demo-bot');
 
@@ -37,9 +37,9 @@ var untaggedMessage = demobot.untaggedMessage;
 //
 //  2: Tell your bot what to listen for.
 //
-//                                     (what to listen for)                (tagged or untagged) (your action name)
-//                                             |                                    |                  |
-//                                             v                                    v                  v
+//                                             (what to listen for)                (tagged or untagged) (your action name)
+//                                                     |                                    |                  |
+//                                                     v                                    v                  v
 //  || demobot.botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
 //
 //  ex: demobot.botListener.hears(['what is your name'], taggedMessage, sayBotName);
@@ -76,9 +76,9 @@ demobot.botListener.hears(['what is your name'], taggedMessage, sayBotName);
 //
 //  2: Tell your bot what to listen for.
 //
-//                                     (what to listen for)                (tagged or untagged) (your action name)
-//                                             |                                    |                  |
-//                                             v                                    v                  v
+//                                             (what to listen for)                (tagged or untagged) (your action name)
+//                                                     |                                    |                  |
+//                                                     v                                    v                  v
 //  || demobot.botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
 //
 //  ex: demobot.botListener.hears(['hi woody'], taggedMessage, sayBotIntroduction);
@@ -141,9 +141,9 @@ demobot.botListener.hears(['hello demo-bot', 'hello demobot'], taggedMessage, sa
 //
 //  4: Tell your bot what to listen for.
 //
-//                                     (what to listen for)                (tagged or untagged) (your action name)
-//                                             |                                    |                  |
-//                                             v                                    v                  v
+//                                             (what to listen for)                (tagged or untagged) (your action name)
+//                                                     |                                    |                  |
+//                                                     v                                    v                  v
 //  || demobot.botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
 //
 //  ex: demobot.botListener.hears(['lets talk about the beatles'], untaggedMessage, askAboutFavoriteBeatle);
@@ -231,9 +231,9 @@ demobot.botListener.hears(['lets talk about the beatles'], taggedMessage, askAbo
 //
 //  4: Tell your bot what to listen for.
 //
-//                                     (what to listen for)                (tagged or untagged) (your action name)
-//                                             |                                    |                  |
-//                                             v                                    v                  v
+//                                             (what to listen for)                (tagged or untagged) (your action name)
+//                                                     |                                    |                  |
+//                                                     v                                    v                  v
 //  || demobot.botListener.hears(['trigger words', 'in quotes', 'separated by commas'], untaggedMessage, behaviorName);
 //
 //  ex: demobot.botListener.hears(['ask me an interesting question'], taggedMessage, askAboutLincolnAndGandhi);
@@ -241,8 +241,8 @@ demobot.botListener.hears(['lets talk about the beatles'], taggedMessage, askAbo
 //-----------------------------------------------------------------------------------------------------------*/
 
 function askAboutLincolnAndGandhi(bot, incomingMessage) {
-  demobot.bot.startConversation(incomingMessage, function(err,convo) {
-  convo.ask("Who would win in a fight: Lincoln or Gandhi?", [
+  demobot.bot.startConversation(incomingMessage, function(err, convo) {
+  convo.ask('Who would win in a fight: Lincoln or Gandhi?', [
       {
         pattern: /lincoln/ig,
         callback: function(response,convo) {
@@ -253,14 +253,31 @@ function askAboutLincolnAndGandhi(bot, incomingMessage) {
       {
         pattern: /gandhi/ig,
         callback: function(response,convo) {
-          convo.say('But Lincoln had a cooler hat.');
+          convo.say('We can agree to disagree.');
+          convo.ask('But Lincoln had a cooler hat, right?', [
+            {
+              {
+                pattern: demobot.bot.utterances.yes,
+                callback: function(response,convo) {
+                  convo.say('And his beard was LEGENDARY.');
+                  convo.next();
+                }
+              },
+              {
+                pattern: demobot.bot.utterances.no,
+                callback: function(response,convo) {
+                  convo.say('Gandhi didn\'t even have a hat. Clearly you\'re not a history buff');
+                  convo.next();
+                }
+              },
+            }]);
           convo.next();
         }
       },
       {
         default: true, // IF THE PATTERNS ARE NOT MATCHED
         callback: function(response,convo) {
-          convo.say("But seriously.");
+          convo.say('But seriously.');
           convo.repeat();
           convo.next();
         }
