@@ -28,8 +28,6 @@ var demobot = new protobot({
   debug: true
 });
 
-demobot.botListener.on('tick', function() {});
-
 /*-------------------------------------------------------------------------------------------------------------
 //
 //                                            BOT CONFIGS
