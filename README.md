@@ -42,8 +42,8 @@ bot to connect.
 ### Step 5: *Edit your settings*
 
 Next we'll create a file in the root diretory of this project called `.env`.
-The file name should include the dot prefix and its contents should look like
-this:
+The exact file name should be `.env`. The file name should include the dot prefix and
+its contents should look like this:
 
     token=xoxb-fffffffffff-PfN6HCc7L6kVHqTU3eTS1Csc
 
