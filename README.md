@@ -16,15 +16,16 @@ so that we can execute our code.
 
 ### Step 2: *Download this starter kit*
 
+[Please download the lastest release here](https://github.com/davidsicher/demo-bot/releases).
+
 In order to help speed things up we've prepared this demo bot. Inside are
 examples of many of the pieces of functionality you can find in your bot.
 Our demo bot is build on top of [Botkit](https://github.com/howdyai/botkit),
-a Slack specific framework built by [Howdy](http://howdy.ai/). Please download
-the lastest release [here](https://github.com/davidsicher/demo-bot/releases).
+a Slack specific framework built by [Howdy](http://howdy.ai/).
 
 ### Step 3: *Install dependencies*
 
-After downloading the project, enter the directory and install the dependencies
+Open Terminal, enter the directory where you downloaded the project, and install the dependencies
 via the node package manager.
 
     $ cd ~/Downloads/demo-bot-x.x.x       // change into the project directory
@@ -33,7 +34,7 @@ via the node package manager.
 ### Step 4: *Register your bot*
 
 Now that you have your bot available we'll want to connect it to Slack. As a
-first step, let's register our bot. Visit the custom integrations page at
+first step, register your bot. Visit the custom integrations page at
 [https://slack.com/apps/manage/custom-integrations](https://slack.com/apps/manage/custom-integrations).
 You will need to "build your own custom integration for a bot." Follow the onscreen
 prompts. When completed you'll have an API token that you can use for you're
@@ -41,9 +42,9 @@ bot to connect.
 
 ### Step 5: *Edit your settings*
 
-Next we'll create a file in the root diretory of this project called `.env`.
-The exact file name should be `.env`. The file name should include the dot prefix and
-its contents should look like this:
+Next open a text editor and create a file in the root diretory of this project called `.env`.
+The file name should include the dot prefix and its contents should look like
+this:
 
     token=xoxb-fffffffffff-PfN6HCc7L6kVHqTU3eTS1Csc
 
