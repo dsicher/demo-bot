@@ -35,8 +35,9 @@ via the node package manager.
 Now that you have your bot available we'll want to connect it to Slack. As a
 first step, let's register our bot. Visit the custom integrations page at
 [https://slack.com/apps/manage/custom-integrations](https://slack.com/apps/manage/custom-integrations).
-Select bots, add new, and follow the prompts. When completed you'll have an API
-token that you can use for you're bot to connect.
+You will need to "build your own custom integration for a bot." Follow the onscreen
+prompts. When completed you'll have an API token that you can use for you're
+bot to connect.
 
 ### Step 5: *Edit your settings*
 
