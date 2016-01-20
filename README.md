@@ -1,4 +1,6 @@
-## Welcome to EVENTNAME
+## Welcome to Designing Conversations: Rise of the Bots
+
+###[Meetup Info](http://www.meetup.com/Huge-LA/events/228204876/)
 
 ![](http://i.giphy.com/osicrp6ErKw9i.gif)
 
