@@ -21,12 +21,7 @@ demobot.rollCallResponse = function () {
 //
 //                                            Instructions:
 //
-//  1: Write your bot action and give it a name.
-//
-//     TIP: The action name must be a single word without spaces or punctuation
-//     TIP: Use descriptive, active names like 'sayBotName'
-//
-//  2: Tell your bot what to listen for, followed by what to reply with.
+//  1: Tell your bot what to listen for, followed by what to reply with.
 //
 //  || demobot.listenFor( "well hello demo-bot" ).andReplyWith( "well hello to you too human" );
 //  ||
@@ -35,7 +30,7 @@ demobot.rollCallResponse = function () {
 //  || demobot.listenForTagged( "well hello demo-bot" ).andReplyWith( "well hello to you too human" );
 //
 //
-//  3: You're first bot is officially ALIVE!
+//  2: You're first bot is officially ALIVE!
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
@@ -44,7 +39,7 @@ demobot
   .andReplyWith( "what's good human?" );
 
 demobot
-  .listenForTagged( "i'm talking to you" )
+  .listenForTagged( "im talking to u" )
   .andReplyWith( "is that a question?" );
 
 /*-------------------------------------------------------------------------------------------------------------
