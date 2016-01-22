@@ -31,7 +31,7 @@ a Slack specific framework built by [Howdy](http://howdy.ai/).
 ### Step 3: *Install dependencies*
 
 Open Terminal, enter the directory where you downloaded the project, and install the dependencies
-via the node package manager.
+via the node package manager. Replace `-x.x.x` with the actual version number of the downloaded file.
 
     $ cd ~/Downloads/demo-bot-x.x.x       // change into the project directory
     $ npm install                         // install the dependencies
