@@ -6,7 +6,7 @@
 
 var protobot = require('proto-bot');
 var demobot = new protobot({
-  botName: 'demo-bot',
+  botName: 'demo-bot', // ENTER YOUR BOT NAME HERE
   debug: true
 });
 
@@ -27,14 +27,14 @@ demobot.rollCallResponse = function () {
 //     TIP: Use descriptive, active names like 'sayBotName'
 //
 //  || function sayBotName(bot, incomingMessage) {
-//  ||   bot.reply(incomingMessage, 'my name is inigo montoya');
+//  ||   bot.reply(incomingMessage, 'my name is demo-bot');
 //  || }
 //
 //  2: Tell your bot what to listen for.
 //
-//          (tagged or untagged)               (what to listen for)                 (your action name)
-//                   |                                 |                                   |
-//                   v                                 v                                   v
+//                                              (what to listen for)                 (your action name)
+//                                                      |                                   |
+//                                                      v                                   v
 //  || demobot.addTaggedTrigger(['trigger words', 'in quotes', 'separated by commas'], behaviorName);
 //
 //  ex: demobot.addTaggedTrigger(['what is your name'], sayBotName);
@@ -44,8 +44,9 @@ demobot.rollCallResponse = function () {
 //-----------------------------------------------------------------------------------------------------------*/
 
 function sayBotName(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'my name is inigo montoya');
+  bot.reply(incomingMessage, 'my name is demo-bot');
 }
+
 demobot.addTaggedTrigger(['what is your name'], sayBotName);
 
 /*-------------------------------------------------------------------------------------------------------------
@@ -57,9 +58,6 @@ demobot.addTaggedTrigger(['what is your name'], sayBotName);
 //
 //  1: Write your conversation action and give it a name.
 //
-//     TIP: Multi-line statements are great for simulating real conversations
-//     TIP: Try using multi-line statements to strengthen your bot's personality
-//     TIP: Use descriptive, active names like 'sayBotIntroduction'
 //     TIP: If you use quotation marks in your bot's conversations, escape them with a \
 //
 //  || var sayBotIntroduction = function(bot, incomingMessage) {
@@ -71,12 +69,12 @@ demobot.addTaggedTrigger(['what is your name'], sayBotName);
 //
 //  2: Tell your bot what to listen for.
 //
-//          (tagged or untagged)               (what to listen for)                 (your action name)
-//                   |                                 |                                   |
-//                   v                                 v                                   v
+//                                             (what to listen for)                 (your action name)
+//                                                     |                                   |
+//                                                     v                                   v
 //  || demobot.addTaggedTrigger(['trigger words', 'in quotes', 'separated by commas'], behaviorName);
 //
-//  ex: demobot.addTaggedTrigger(['hi woody'], taggedMessage, sayBotIntroduction);
+//  ex: demobot.addTaggedTrigger(['hi woody'], sayBotIntroduction);
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
@@ -84,10 +82,10 @@ var sayBotIntroduction = function(bot, incomingMessage) {
   bot.startConversation(incomingMessage, function(err,convo) {
     convo.say('Howdy Partner!');
     convo.say('You\'re my favorite deputy!');
-
   });
 }
-demobot.addTaggedTrigger(['hi woody', 'hello woody'], sayBotIntroduction);
+
+demobot.addTaggedTrigger(['hi', 'hello', 'yo'], sayBotIntroduction);
 
 /*-------------------------------------------------------------------------------------------------------------
 //
@@ -137,12 +135,12 @@ demobot.addTaggedTrigger(['hi woody', 'hello woody'], sayBotIntroduction);
 //  4: Tell your bot what to listen for.
 //
 //
-//          (tagged or untagged)               (what to listen for)                 (your action name)
-//                   |                                 |                                   |
-//                   v                                 v                                   v
+//                                              (what to listen for)                (your action name)
+//                                                      |                                   |
+//                                                      v                                   v
 //  || demobot.addTaggedTrigger(['trigger words', 'in quotes', 'separated by commas'], behaviorName);
 //
-//  ex: demobot.addTaggedTrigger(['lets talk about the beatles'], untaggedMessage, askAboutFavoriteBeatle);
+//  ex: demobot.addTaggedTrigger(['lets talk about the beatles'], askAboutFavoriteBeatle);
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
@@ -158,14 +156,14 @@ askAboutFavoriteBeatle = function(bot, incomingMessage) {
 
 askAboutFavoriteBeatlesSongs = function(response, convo) {
   convo.ask("And what is your favorite Beatles song?", function(response, convo) {
+    convo.say("Meh.");
+    convo.say("I guess I'm a Rolling Stones guy.");
     endBeatlesConversation(response, convo);
     convo.next();
   });
 }
 
 endBeatlesConversation = function(response, convo) {
-  convo.say("Meh.");
-  convo.say("I guess I'm a Rolling Stones guy.");
   convo.next();
 }
 
@@ -228,12 +226,12 @@ demobot.addTaggedTrigger(['lets talk about the beatles'], askAboutFavoriteBeatle
 //
 //  4: Tell your bot what to listen for.
 //
-//          (tagged or untagged)               (what to listen for)                 (your action name)
-//                   |                                 |                                   |
-//                   v                                 v                                   v
+//                                              (what to listen for)                 (your action name)
+//                                                      |                                   |
+//                                                      v                                   v
 //  || demobot.addTaggedTrigger(['trigger words', 'in quotes', 'separated by commas'], behaviorName);
 //
-//  ex: demobot.addTaggedTrigger(['ask me an interesting question'], taggedMessage, askAboutLincolnAndGandhi);
+//  ex: demobot.addTaggedTrigger(['ask me an interesting question'], askAboutLincolnAndGandhi);
 //
 //-----------------------------------------------------------------------------------------------------------*/
 

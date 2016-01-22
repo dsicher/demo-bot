@@ -10,11 +10,14 @@ on a few pieces of existing technology. This will allow us to build our bot
 with greatly improved speed and ease collaboration efforts so that everyone can
 get involved. All of our work will utilize Node.js, so let's start there.
 
-### Step 1: *Install Node.js*
+### Step 1: *Install Node.js and Sublime Text*
 
 If you do not yet have Node.js installed on your computer please do so by
 visiting their [website](http://nodejs.org). This will a Javascript runtime
 so that we can execute our code.
+
+Also [install Sublime Text](http://www.sublimetext.com/), the text editor we
+will use to edit and write bots.
 
 ### Step 2: *Download this starter kit*
 
@@ -44,7 +47,7 @@ bot to connect.
 
 ### Step 5: *Edit your settings*
 
-Next open a text editor and create a file in the root diretory of this project called `.env`.
+Next open a text editor and create a file in the root directory of this project called `.env`.
 The file name should include the dot prefix and its contents should look like
 this:
 
