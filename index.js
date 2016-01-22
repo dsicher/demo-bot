@@ -16,7 +16,7 @@ demobot.rollCallResponse = function () {
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                                      Bot Logic Part 1: reply()
+//                             Bot Logic Part 1: listenFor() andReplyWith()
 //                                   -- YOUR BOT'S FIRST MESSAGE --
 //
 //                                            Instructions:
@@ -26,28 +26,26 @@ demobot.rollCallResponse = function () {
 //     TIP: The action name must be a single word without spaces or punctuation
 //     TIP: Use descriptive, active names like 'sayBotName'
 //
-//  || function sayBotName(bot, incomingMessage) {
-//  ||   bot.reply(incomingMessage, 'my name is demo-bot');
-//  || }
+//  2: Tell your bot what to listen for, followed by what to reply with.
 //
-//  2: Tell your bot what to listen for.
+//  || demobot.listenFor( "well hello demo-bot" ).andReplyWith( "well hello to you too human" );
+//  ||
+//  || or listen for a direct message, as in @demo-bot: i'm talking to you.
+//  ||
+//  || demobot.listenForTagged( "well hello demo-bot" ).andReplyWith( "well hello to you too human" );
 //
-//                                              (what to listen for)                 (your action name)
-//                                                      |                                   |
-//                                                      v                                   v
-//  || demobot.addTaggedTrigger(['trigger words', 'in quotes', 'separated by commas'], behaviorName);
-//
-//  ex: demobot.addTaggedTrigger(['what is your name'], sayBotName);
 //
 //  3: You're first bot is officially ALIVE!
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
-function sayBotName(bot, incomingMessage) {
-  bot.reply(incomingMessage, 'my name is demo-bot');
-}
+demobot
+  .listenFor( "well hello demo-bot" )
+  .andReplyWith( "what's good human?" );
 
-demobot.addTaggedTrigger(['what is your name'], sayBotName);
+demobot
+  .listenForTagged( "i'm talking to you" )
+  .andReplyWith( "is that a question?" );
 
 /*-------------------------------------------------------------------------------------------------------------
 //
