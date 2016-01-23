@@ -39,7 +39,7 @@ demobot
   .andReplyWith( "what's good human?" );
 
 demobot
-  .listenForTagged( "im talking to u" )
+  .listenForTagged( "i'm talking to you" )
   .andReplyWith( "is that a question?" );
 
 /*-------------------------------------------------------------------------------------------------------------
@@ -78,7 +78,7 @@ var sayBotIntroduction = function(bot, incomingMessage) {
   });
 }
 
-demobot.addTaggedTrigger(['hi', 'hello', 'yo'], sayBotIntroduction);
+demobot.addTaggedTrigger(['hi', 'hello'], sayBotIntroduction);
 
 /*-------------------------------------------------------------------------------------------------------------
 //

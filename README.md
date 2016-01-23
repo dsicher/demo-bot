@@ -4,63 +4,89 @@
 
 ![](http://i.giphy.com/osicrp6ErKw9i.gif)
 
+## At Home Setup
+
+### Step 1: *Install Node.js and Sublime Text*
+
+[Please download the lastest STABLE version of Node.js here](https://nodejs.org/en/)
+
+This will allow us to use the Javascript programming language.
+
+### Step 2: *Install Sublime Text*
+
+[Install Sublime Text](http://www.sublimetext.com/)
+
+Sublime is the text editor we will use to edit our code and write bots.
+
+### Step 3: *Sign up for Slack*
+
+We'll be sending out an email invitation to join our Slack team and follow the instructions.
+You can introduce yourself in our `#intros` channel or hang back until the day of the event.
+Thanks so much for your interest, we can't wait to meet you!
+
+
+## Let's Begin
+
 We've prepared this document to serve as a short walkthrough that will have you
 up and running by the end of it. In order to create a chatbot we'll be depending
 on a few pieces of existing technology. This will allow us to build our bot
 with greatly improved speed and ease collaboration efforts so that everyone can
 get involved. All of our work will utilize Node.js, so let's start there.
 
-### Step 1: *Install Node.js and Sublime Text*
 
-If you do not yet have Node.js installed on your computer please do so by
-visiting their [website](http://nodejs.org). This will a Javascript runtime
-so that we can execute our code.
-
-Also [install Sublime Text](http://www.sublimetext.com/), the text editor we
-will use to edit and write bots.
-
-### Step 2: *Download this starter kit*
+### Step 4: *Download this starter kit*
 
 [Please download the lastest release here](https://github.com/davidsicher/demo-bot/releases).
 
-In order to help speed things up we've prepared this demo bot. Inside are
-examples of many of the pieces of functionality you can find in your bot.
-Our demo bot is build on top of [Botkit](https://github.com/howdyai/botkit),
-a Slack specific framework built by [Howdy](http://howdy.ai/).
+In order to help speed things up we've prepared a small scaffolding for a chat bot.
+Inside are examples of many of the pieces of functionality you can find in your
+bot. Our demo bot is build on top of [Botkit](https://github.com/howdyai/botkit).
 
-### Step 3: *Install dependencies*
+### Step 5: *Install dependencies*
 
-Open Terminal, enter the directory where you downloaded the project, and install the dependencies
-via the node package manager. Replace `-x.x.x` with the actual version number of the downloaded file.
+Open a finder window, navigate to Applications > Utilities. There you'll find
+Terminal.app which we'll use to enter commands. First we will enter the project
+folder by typing the following command. Press the enter key when done.
 
-    $ cd ~/Downloads/demo-bot-x.x.x       // change into the project directory
-    $ npm install                         // install the dependencies
+    // IMPORTANT: not copy paste friendly, replace x-x-x with the name of the file that was just downloaded
+    $ cd ~/Downloads/demo-bot-x.x.x
 
-### Step 4: *Register your bot*
+Then we'll complete the installation by typing the following command, also in terminal.
 
-Now that you have your bot available we'll want to connect it to Slack. As a
-first step, register your bot. Visit the custom integrations page at
-[https://slack.com/apps/manage/custom-integrations](https://slack.com/apps/manage/custom-integrations).
-You will need to "build your own custom integration for a bot." Follow the onscreen
-prompts. When completed you'll have an API token that you can use for you're
-bot to connect.
+    $ npm install
 
-### Step 5: *Edit your settings*
+### Step 6: *Register your bot*
 
-Next open a text editor and create a file in the root directory of this project called `.env`.
-The file name should include the dot prefix and its contents should look like
-this:
+You should already have completed the registration to
+[Rise of the Bots](https://riseofthebots.slack.com/), but if you haven't
+please let one of the event coordinators know now.
+
+Next we want to connect your bot to Slack! As a first step, register your bot.
+Make sure you've logged into
+[Rise of the Bots](https://riseofthebots.slack.com/) then visit the custom
+integrations page at [https://slack.com/apps/manage/custom-integrations](https://slack.com/apps/manage/custom-integrations).
+Click "Build your own" in the top right navigation, then "Make a Custom
+Integration", and finally "Bots". Give your bot a username and click "Add Bot
+integration". On the following screen you'll see a field called "API Token".
+Copy the token, and keep it handy for the next step.
+
+### Step 7: *Edit your settings*
+
+Open a text editor and create a file in the root directory of this project called `.env`.
+The file name should include the dot prefix. The entire name of the file is
+`.env`. There is no additional file extension. Type in `token=` then your new
+token so that the contents of the file looks like this:
 
     token=xoxb-fffffffffff-PfN6HCc7L6kVHqTU3eTS1Csc
 
-### Step 6: *SHIP IT*
+### Step 8: *SHIP IT*
 
-You officially have a capable chat bot. Test it out by running the following:
+You officially have a capable chat bot!!! Connect the bot to slack by running:
 
     $ npm start
 
 After the bot has loaded and the output has stopped you should notice that
-your bot is online and available inside your Slack team. Open up `index.js` and
-get hackin'!
+your bot is online and available inside your Slack team. There are endless
+possibilities, what will you come up with?
 
 ![](http://i.giphy.com/CDMz3fckRXXDG.gif)

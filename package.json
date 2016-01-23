@@ -8,6 +8,6 @@
   },
   "author": "",
   "dependencies": {
-    "proto-bot": "~0.1.5"
+    "proto-bot": "~0.1.8"
   }
 }
