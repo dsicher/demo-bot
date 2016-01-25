@@ -4,6 +4,8 @@
 
 ![](http://i.giphy.com/osicrp6ErKw9i.gif)
 
+TODO: MAKE LINKS TARGET BLANK
+
 ## At Home Setup
 
 ### Step 1: *Install Node.js and Sublime Text*

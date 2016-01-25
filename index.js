@@ -7,7 +7,8 @@
 var protobot = require('proto-bot');
 var demobot = new protobot({
   botName: 'demo-bot', // ENTER YOUR BOT NAME HERE
-  debug: true
+  debug: false,
+  log: true
 });
 
 demobot.rollCallResponse = function () {
@@ -33,6 +34,7 @@ demobot.rollCallResponse = function () {
 //  2: You're first bot is officially ALIVE!
 //
 //-----------------------------------------------------------------------------------------------------------*/
+
 
 demobot
   .listenFor( "well hello demo-bot" )
@@ -71,14 +73,17 @@ demobot
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
-var sayBotIntroduction = function(bot, incomingMessage) {
-  bot.startConversation(incomingMessage, function(err,convo) {
-    convo.say('Howdy Partner!');
-    convo.say('You\'re my favorite deputy!');
-  });
-}
-
-demobot.addTaggedTrigger(['hi', 'hello'], sayBotIntroduction);
+demobot.hears("ice cream")
+  .says("did someone say ice cream? let's talk.")
+  .asks("chocolate or vanilla?")
+    .hears("chocolate")
+      .says("my favorite!")
+      .says("your the best :star:!!!").end() // ends hears
+    .hears('vanilla')
+      .says("wrong!")
+      .says('next t:icecream:pic').end() // ends hears
+  .end() // ends ask
+.end(); // ends conversation
 
 /*-------------------------------------------------------------------------------------------------------------
 //
