@@ -1,6 +1,6 @@
 ## Welcome to Designing Conversations: Rise of the Bots
 
-###[Meetup Info](http://www.meetup.com/Huge-LA/events/228204876/)
+###<a href="http://www.meetup.com/Huge-LA/events/228204876/" target="_blank">Meetup Info</a>
 
 ![](http://i.giphy.com/osicrp6ErKw9i.gif)
 
@@ -10,13 +10,13 @@ TODO: MAKE LINKS TARGET BLANK
 
 ### Step 1: *Install Node.js and Sublime Text*
 
-[Please download the lastest STABLE version of Node.js here](https://nodejs.org/en/)
+<a href="https://nodejs.org/en/" target="_blank">Please download the lastest STABLE version of Node.js here</a>
 
 This will allow us to use the Javascript programming language.
 
 ### Step 2: *Install Sublime Text*
 
-[Install Sublime Text](http://www.sublimetext.com/)
+<a href="http://www.sublimetext.com" target="_blank">Install Sublime Text</a>
 
 Sublime is the text editor we will use to edit our code and write bots.
 
@@ -38,11 +38,11 @@ get involved. All of our work will utilize Node.js, so let's start there.
 
 ### Step 4: *Download this starter kit*
 
-[Please download the lastest release here](https://github.com/davidsicher/demo-bot/releases).
+<a href="https://github.com/davidsicher/demo-bot/releases" target="_blank">Please download the lastest release here</a>.
 
 In order to help speed things up we've prepared a small scaffolding for a chat bot.
 Inside are examples of many of the pieces of functionality you can find in your
-bot. Our demo bot is build on top of [Botkit](https://github.com/howdyai/botkit).
+bot. Our demo bot is build on top of <a href="https://github.com/howdyai/botkit" target="_blank">Botkit</a>.
 
 ### Step 5: *Install dependencies*
 
@@ -59,14 +59,15 @@ Then we'll complete the installation by typing the following command, also in te
 
 ### Step 6: *Register your bot*
 
-You should already have completed the registration to
-[Rise of the Bots](https://riseofthebots.slack.com/), but if you haven't
-please let one of the event coordinators know now.
+You should already have completed the registration to Rise of the Bots
+but if you haven't please do so now at the following link:
+<a href="http://join.riseofthebots.net">http://join.riseofthebots.net</a>.
 
 Next we want to connect your bot to Slack! As a first step, register your bot.
 Make sure you've logged into
-[Rise of the Bots](https://riseofthebots.slack.com/) then visit the custom
-integrations page at [https://slack.com/apps/manage/custom-integrations](https://slack.com/apps/manage/custom-integrations).
+<a href="https://riseofthebots.slack.com/" target="_blank">Rise of the Bots</a>
+then visit the custom integrations page at
+<a href="https://slack.com/apps/manage/custom-integrations" target="_blank">https://slack.com/apps/manage/custom-integrations</a>.
 Click "Build your own" in the top right navigation, then "Make a Custom
 Integration", and finally "Bots". Give your bot a username and click "Add Bot
 integration". On the following screen you'll see a field called "API Token".
