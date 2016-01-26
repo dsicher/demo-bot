@@ -18,7 +18,7 @@ var demobot = new protobot({
 demobot.botName = 'demo-bot'; // ENTER YOUR BOT NAME HERE
 
 demobot.rollCallResponse = function () {
-  return demobot.botName + ' reporting for duty'; // WRITE YOUR OWN ROLL CALL HERE
+  return demobot.botName + ' reporting for duty'; // WRITE YOUR OWN RESPONSE TO ROLL CALL HERE
 }
 
 /*-------------------------------------------------------------------------------------------------------------
@@ -95,10 +95,9 @@ demobot
 //  ||     .asks("chocolate or vanilla?")
 //  ||       .hears("chocolate")
 //  ||         .says("my favorite!")
-//  ||         .says("your the best :star:!!!").end()
+//  ||         .says("your the best!!!").end()
 //  ||       .hears("vanilla")
-//  ||         .says("wrong!")
-//  ||         .says("next t:icecream:pic").end()
+//  ||         .says("wrong!").end()
 //  ||     .end()
 //  ||   .end();
 //
@@ -109,10 +108,10 @@ demobot
 demobot
   .hears("ice cream")
     .says("Did someone say ice cream? Let's talk.")
-    .asks("Chocolate or vanilla?")
+    .asks("*chocolate* or *vanilla*?")
       .hears("chocolate")
         .says("My favorite!")
-        .says("You're the best :star:!!!").end() // ends says() chain
+        .says("You're the best!!!").end() // ends says() chain
       .hears("vanilla")
         .says("Wrong!").end() // ends says() chain
     .end() // ends asks()
@@ -125,7 +124,7 @@ demobot
 //
 //                                             Instructions:
 //
-//  1: Close as asks() statement with a defaultsTo() to repeat the question until you
+//  1: Close asks() statements with a defaultsTo() to repeat the question until you
 //     get the answers you want!
 //
 //  || demobot
@@ -149,7 +148,7 @@ demobot
 
 demobot
   .hears("interrogate")
-    .asks("TELL ME WHAT I WANT TO KNOW: Beyonce or Bieber?")
+    .asks("TELL ME WHAT I WANT TO KNOW: *beyonce* or *bieber*?")
       .hears("beyonce")
         .says("All the single robots! All the single robots!").end() // ends says() chain
       .hears("beiber")
@@ -179,9 +178,9 @@ demobot
 demobot
   .hears("animal")
     .says("I am a total animal FREAK!")
-    .asks("Have you ever been to the zoo?")
+    .asks("Have you ever been to the zoo? *yes* or *no*")
       .hears("yes")
-        .asks("OMG did you like it?")
+        .asks("OMG did you like it? yes or no")
           .hears("yes")
             .says("Its like a funny panda prison!").end()
           .hears("no")
@@ -189,7 +188,7 @@ demobot
         .defaultsTo("Sorry, I'm only listening for a yes or no")
       .hears("no")
         .says("You have to check it out.")
-        .asks("When you go will you see the lions first or the monkeys?")
+        .asks("When you go, what will you see first? *lions* or *monkeys*?")
           .hears("lions")
             .says("Roar!").end()
           .hears("monkeys")
@@ -214,7 +213,7 @@ demobot
 */
 demobot
   .hears("politics")
-    .asks("Who would win in a tickle fight: Hillary or Bernie?")
+    .asks("Who would win in a tickle fight: *Hillary* or *Bernie*?")
       .hears(/hillary/i)
         .says("Don't tell Bill!")
         .says("hehehe").end()
