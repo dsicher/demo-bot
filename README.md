@@ -20,10 +20,9 @@ Sublime is the text editor we will use to edit our code and write bots.
 
 ### Step 3: *Sign up for Slack*
 
-We'll be sending out an email invitation to join our Slack team and follow the instructions.
-You can introduce yourself in our `#intros` channel or hang back until the day of the event.
-Thanks so much for your interest, we can't wait to meet you!
-
+You should already have completed the registration to Rise of the Bots
+but if you haven't please do so now at the following link:
+<a href="http://join.riseofthebots.net">http://join.riseofthebots.net</a>.
 
 ## Let's Begin
 
@@ -56,10 +55,6 @@ Then we'll complete the installation by typing the following command, also in te
     $ npm install
 
 ### Step 6: *Register your bot*
-
-You should already have completed the registration to Rise of the Bots
-but if you haven't please do so now at the following link:
-<a href="http://join.riseofthebots.net">http://join.riseofthebots.net</a>.
 
 Next we want to connect your bot to Slack! As a first step, register your bot.
 Make sure you've logged into
