@@ -1,280 +1,262 @@
-/*-------------------------------------------------------------------------------------------------------------
-//
-//                                            BOT CONFIGS
-//
-//-----------------------------------------------------------------------------------------------------------*/
-
 var protobot = require('proto-bot');
+
 var demobot = new protobot({
-  botName: 'demo-bot', // ENTER YOUR BOT NAME HERE
   debug: false,
   log: true
 });
 
+/*-------------------------------------------------------------------------------------------------------------
+//
+//                                         -- HELLO WORLD --
+//
+//                                           Instructions:
+//
+//  1: Name your bot and give it a new roll call message
+//
+//-----------------------------------------------------------------------------------------------------------*/
+
+demobot.botName = 'demo-bot'; // ENTER YOUR BOT NAME HERE
+
 demobot.rollCallResponse = function () {
-  return demobot.botName + ' reporting for duty';
+  return demobot.botName + ' reporting for duty'; // WRITE YOUR OWN ROLL CALL HERE
 }
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                             Bot Logic Part 1: listenFor() andReplyWith()
 //                                   -- YOUR BOT'S FIRST MESSAGE --
 //
 //                                            Instructions:
 //
 //  1: Tell your bot what to listen for, followed by what to reply with.
 //
-//  || demobot.listenFor( "well hello demo-bot" ).andReplyWith( "well hello to you too human" );
-//  ||
-//  || or listen for a direct message, as in @demo-bot: i'm talking to you.
-//  ||
-//  || demobot.listenForTagged( "well hello demo-bot" ).andReplyWith( "well hello to you too human" );
+//  || demobot
+//  ||   .listenFor( "well hello demo-bot" )
+//  ||   .andReplyWith( "well hello to you too human" );
 //
-//
-//  2: You're first bot is officially ALIVE!
+//  2: Your first bot is officially ALIVE!
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
 
 demobot
   .listenFor( "well hello demo-bot" )
-  .andReplyWith( "what's good human?" );
-
-demobot
-  .listenForTagged( "i'm talking to you" )
-  .andReplyWith( "is that a question?" );
+  .andReplyWith( "What's good human?" );
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                               Bot Logic Part 2: startConversation() and say()
-//                       -- WRITE YOUR BOT'S MULTI-LINE RESPONSES WITH CONVERSATIONS --
+//                               Bot Logic Part 2: hears(), says(), and end()
+//                                      -- INTRO TO CONVERSATIONS --
 //
 //                                             Instructions:
 //
-//  1: Write your conversation action and give it a name.
+//  1: You can use hears(), says(), and end() to write the same conversation
 //
-//     TIP: If you use quotation marks in your bot's conversations, escape them with a \
+//  || demobot
+//  ||   .hears("well hello demo-bot")
+//  ||     .says("what's good human?").end()
+//  ||   .end()
 //
-//  || var sayBotIntroduction = function(bot, incomingMessage) {
-//  ||   bot.startConversation(incomingMessage, function(err,convo) {
-//  ||     convo.say('Howdy Partner!');
-//  ||     convo.say('You\'re my favorite deputy!');
-//  ||   });
-//  || }
+//    TIP: Remember to close your opening hears() statement with the keyword end()
+//    TIP: Remember to close each chain of says() statements with the keyword end()
 //
-//  2: Tell your bot what to listen for.
+//  2: With hears(), says(), and end() you can also chain responses together!
 //
-//                                             (what to listen for)                 (your action name)
-//                                                     |                                   |
-//                                                     v                                   v
-//  || demobot.addTaggedTrigger(['trigger words', 'in quotes', 'separated by commas'], behaviorName);
-//
-//  ex: demobot.addTaggedTrigger(['hi woody'], sayBotIntroduction);
+//  || demobot
+//  ||   .hears("i'm talking to you")
+//  ||     .says("are you talkin to me?")
+//  ||     .says("are you talkin to me?!")
+//  ||     .says("cause I don't see anybody else here")
+//  ||     .says("are you talkin to me?").end()
+//  ||   .end()
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
-demobot.hears("ice cream")
-  .says("did someone say ice cream? let's talk.")
-  .asks("chocolate or vanilla?")
-    .hears("chocolate")
-      .says("my favorite!")
-      .says("your the best :star:!!!").end() // ends hears
-    .hears('vanilla')
-      .says("wrong!")
-      .says('next t:icecream:pic').end() // ends hears
-  .end() // ends ask
-.end(); // ends conversation
+demobot
+  .hears("im talking to you")
+    .says("Are you talkin to me?")
+    .says("Are you talkin to me?!")
+    .says("'Cause I don't see anybody else here")
+    .says("Are you talkin to me?").end() // ends says() chain
+  .end() // ends conversation
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                           Bot Logic Part 3: startConversation() and ask() pt. 1
-//              -- DEVELOP RICH INTERACTIONS BY WRITING QUESTIONS AND WAITING FOR RESPONSES --
+//                                       Bot Logic Part 3: asks()
+//                                     -- BRANCHING CONVERSATIONS --
 //
-//                                           Instructions:
+//                                             Instructions:
 //
-//  1: Write your first question and give it a name.
+//  1: Use asks() to make your robot ask a question and wait for a response.
+//     Your robot will listen for any responses you write in hears().
 //
-//     TIP: Your first question must have the startConversation() call
-//     TIP: Chain your questions together to create deep interactions
-//     TIP: In the first question, remember to use `bot` and `incomingMessage` as your action parameters
-//     TIP: Write each question as a separate function to keep your bot easy to read and maintain
-//     TIP: Put your .say() response inside the question to keep your bot easy to read and maintain
+//  || demobot
+//  ||   .hears("ice cream")
+//  ||     .says("did someone say ice cream? let's talk.")
+//  ||     .asks("chocolate or vanilla?")
+//  ||       .hears("chocolate")
+//  ||         .says("my favorite!")
+//  ||         .says("your the best :star:!!!").end()
+//  ||       .hears("vanilla")
+//  ||         .says("wrong!")
+//  ||         .says("next t:icecream:pic").end()
+//  ||     .end()
+//  ||   .end();
 //
-//  || askAboutFavoriteBeatle = function(bot, incomingMessage) {
-//  ||   bot.startConversation(incomingMessage, function(err,convo) {
-//  ||    convo.ask("Who is your favorite Beatle?", function(response, convo) {
-//  ||      convo.say(response.text + "?! He\'s ok I guess.");
-//  ||      askAboutFavoriteBeatlesSongs(response, convo);
-//  ||      convo.next();
-//  ||    });
-//  ||   });
-//  || }
-//
-//  2: Write any following questions, chaining them together.
-//
-//     TIP: After the first question you do not need to use startConversation()
-//     TIP: After the first question, remember to use `response` and `convo` as your action parameters
-//     TIP: Write each question as a separate function to keep your bot easy to read and maintain
-//     TIP: Questions do not need a say() and an ask(). Maybe you're bot only has another question!
-//
-//  || askAboutFavoriteBeatlesSongs = function(response, convo) {
-//  ||    convo.ask("And what is your favorite Beatles song?", function(response, convo) {
-//  ||      endBeatlesConversation(response, convo);
-//  ||      convo.next();
-//  ||   });
-//  || }
-//
-//  3: End your conversation with an action that does not use .ask()
-//
-//  || endBeatlesConversation = function(response, convo) {
-//  ||    convo.say("I guess I prefer the Rolling Stones.");
-//  || }
-//
-//  4: Tell your bot what to listen for.
-//
-//
-//                                              (what to listen for)                (your action name)
-//                                                      |                                   |
-//                                                      v                                   v
-//  || demobot.addTaggedTrigger(['trigger words', 'in quotes', 'separated by commas'], behaviorName);
-//
-//  ex: demobot.addTaggedTrigger(['lets talk about the beatles'], askAboutFavoriteBeatle);
+//    TIP: Remember to close each asks() statement with the keyword end()
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
-askAboutFavoriteBeatle = function(bot, incomingMessage) {
-  bot.startConversation(incomingMessage, function(err,convo) {
-    convo.ask("Who is your favorite Beatle?", function(response, convo) {
-      convo.say(response.text + "?! He\'s ok I guess.");
-      askAboutFavoriteBeatlesSongs(response, convo);
-      convo.next();
-    });
-  });
-}
-
-askAboutFavoriteBeatlesSongs = function(response, convo) {
-  convo.ask("And what is your favorite Beatles song?", function(response, convo) {
-    convo.say("Meh.");
-    convo.say("I guess I'm a Rolling Stones guy.");
-    endBeatlesConversation(response, convo);
-    convo.next();
-  });
-}
-
-endBeatlesConversation = function(response, convo) {
-  convo.next();
-}
-
-demobot.addTaggedTrigger(['lets talk about the beatles'], askAboutFavoriteBeatle);
+demobot
+  .hears("ice cream")
+    .says("Did someone say ice cream? Let's talk.")
+    .asks("Chocolate or vanilla?")
+      .hears("chocolate")
+        .says("My favorite!")
+        .says("You're the best :star:!!!").end() // ends says() chain
+      .hears("vanilla")
+        .says("Wrong!").end() // ends says() chain
+    .end() // ends asks()
+  .end(); // ends conversation
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                          Bot Logic Part 4: startConversation() and ask() pt. 2
-//                          -- IMPROVE YOUR CONVERSATIONS WITH BRANCHING PATHS --
+//                                     Bot Logic Part 4: defaultsTo()
+//                                       -- REPEATING QUESTIONS --
 //
-//                                            Instructions:
+//                                             Instructions:
 //
-//  1: Write your question, leave your action OPEN.
+//  1: Close as asks() statement with a defaultsTo() to repeat the question until you
+//     get the answers you want!
 //
-//  || function askAboutLincolnAndGandhi(response, convo) {
-//  ||   bot.startConversation(incomingMessage, function(err,convo) {
-//  ||    convo.ask("Who would win in a fight: Lincoln or Gandhi?", [
-//  ||
-//  || // question continues in step 2...
+//  || demobot
+//  ||   .hears("interrogate")
+//  ||     .asks("TELL ME WHAT I WANT TO KNOW: Beyonce or Bieber?")
+//  ||       .hears("beyonce")
+//  ||         .says("All the single robots! All the single robots!").end()
+//  ||       .hears("beiber")
+//  ||         .says("There's a belieber inside every one of us.")
+//  ||         .says("...")
+//  ||         .says("Every.")
+//  ||         .says("One.")
+//  ||         .says("Of.")
+//  ||         .says("Us.").end()
+//  ||     .defaultsTo("I seriously will not stop asking...")
+//  ||   .end();
 //
-//  2: Write the responses you will accept, and what you will do when the response is received.
-//
-//     TIP: `pattern` can be one of three choices: a single word, a pattern to match, or an utterance
-//     TIP: An utterance is a predefined set of responses. Botkit provides `yes` and `no`.
-//     TIP: A single word pattern looks like: `pattern: 'answer'`
-//     TIP: A matching pattern looks like: `pattern: /first|second/ig` which means "first or second, ignore case and look everywhere"
-//     TIP: A matching pattern is called a regular expression, use a site like http://regexr.com/ to learn more and build smarter patterns.
-//     TIP: An utterance pattern looks like: `pattern: demobot.bot.utterances.yes` which means "anything that sounds like yes, ex: yeah, y, yes"
-//
-//  || // continued from step 1...
-//  ||
-//  ||       {
-//  ||         pattern: /lincoln/ig,
-//  ||         callback: function(response,convo) {
-//  ||           convo.say('How could you say that? You animal.');
-//  ||           convo.next();
-//  ||         }
-//  ||       },
-//  ||
-//  || // question continues in step 3...
-//
-//  3: End your question with a catchall response, and close the action.
-//
-//     TIP: Your bot can repeat the question to prompt the user for an expected response
-//
-//  || // continued from step 2...
-//  ||
-//  ||       {
-//  ||         default: true, // Use this callback if the patterns are not matched
-//  ||         callback: function(response,convo) {
-//  ||           convo.say("But seriously.");
-//  ||           convo.repeat();
-//  ||           convo.next();
-//  ||         }
-//  ||       }
-//  ||     ]);
-//  ||   });
-//  || }
-//  ||
-//
-//  4: Tell your bot what to listen for.
-//
-//                                              (what to listen for)                 (your action name)
-//                                                      |                                   |
-//                                                      v                                   v
-//  || demobot.addTaggedTrigger(['trigger words', 'in quotes', 'separated by commas'], behaviorName);
-//
-//  ex: demobot.addTaggedTrigger(['ask me an interesting question'], askAboutLincolnAndGandhi);
+//    TIP: Use the defaultsTo() keyword instead of end() to make your robot repeat the last question
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
-function askAboutLincolnAndGandhi(bot, incomingMessage) {
-  bot.startConversation(incomingMessage, function(err, convo) {
-  convo.ask('Who would win in a fight: Lincoln or Gandhi?', [
-      {
-        pattern: /lincoln/ig,
-        callback: function(response,convo) {
-          convo.say('How could you say that? You animal.');
-          convo.next();
-        }
-      },
-      {
-        pattern: /gandhi/ig,
-        callback: function(response,convo) {
-          convo.say('We can agree to disagree.');
-          convo.ask('But Lincoln had a cooler hat, right?', [
-            {
-              pattern: demobot.bot.utterances.yes,
-              callback: function(response,convo) {
-                convo.say('And his beard was LEGENDARY.');
-                convo.next();
-              }
-            },
-            {
-              pattern: demobot.bot.utterances.no,
-              callback: function(response,convo) {
-                convo.say('Gandhi didn\'t even have a hat. Clearly you\'re not a history buff.');
-                convo.next();
-              }
-            }
-          ]);
-          convo.next();
-        }
-      },
-      {
-        default: true, // IF THE PATTERNS ARE NOT MATCHED
-        callback: function(response,convo) {
-          convo.say('But seriously.');
-          convo.repeat();
-          convo.next();
-        }
-      }
-    ]);
-  });
-}
-demobot.addTaggedTrigger(['ask me an interesting question'], askAboutLincolnAndGandhi);
+demobot
+  .hears("interrogate")
+    .asks("TELL ME WHAT I WANT TO KNOW: Beyonce or Bieber?")
+      .hears("beyonce")
+        .says("All the single robots! All the single robots!").end() // ends says() chain
+      .hears("beiber")
+        .says("There's a belieber inside every one of us.")
+        .says("...")
+        .says("Every.")
+        .says("One.")
+        .says("Of.")
+        .says("Us.").end() // ends says() chain
+    .defaultsTo("I seriously will not stop asking...") // defaultsTo() repeats last question and ends the asks()
+  .end(); // ends conversation
+
+/*-------------------------------------------------------------------------------------------------------------
+//
+//                                 Bot Logic Part 5: Scary complicated stuff
+//                                     -- JUST KIDDING THATS THE END! --
+//
+//                         You have all the tools to build your own conversation bot!
+//                          See the examples below for more branching conversations,
+//                                 responding with animated gifs, and more!
+//
+//-----------------------------------------------------------------------------------------------------------*/
+
+/*
+// Write branching conversations...
+*/
+demobot
+  .hears("animal")
+    .says("I am a total animal FREAK!")
+    .asks("Have you ever been to the zoo?")
+      .hears("yes")
+        .asks("OMG did you like it?")
+          .hears("yes")
+            .says("Its like a funny panda prison!").end()
+          .hears("no")
+            .says("Every party has a pooper.").end()
+        .defaultsTo("Sorry, I'm only listening for a yes or no")
+      .hears("no")
+        .says("You have to check it out.")
+        .asks("When you go will you see the lions first or the monkeys?")
+          .hears("lions")
+            .says("Roar!").end()
+          .hears("monkeys")
+            .says("Monkeys are so funky!").end()
+        .defaultsTo("I am only listening for lions or monkeys. All other words are 100% jibber-jabber")
+    .defaultsTo("Sorry, I'm only listening for a yes or no")
+  .end()
+
+/*
+// Respond with an animated gif...
+*/
+demobot
+  .hears("dance party")
+    .says("Lets dance!")
+    .says("http://33.media.tumblr.com/d59a187d8135623b8f67b0746391711f/tumblr_inline_nsqhezEtjv1t8dzn4_500.gif").end()
+  .end()
+
+/*
+// Use regular expressions instead of strings for hears()...
+// Here, Hillary and Bernie are case insensitive.
+// Go to regexr.com for more information!
+*/
+demobot
+  .hears("politics")
+    .asks("Who would win in a tickle fight: Hillary or Bernie?")
+      .hears(/hillary/i)
+        .says("Don't tell Bill!")
+        .says("hehehe").end()
+      .hears(/bernie/i)
+        .says("Totally agree. He gives tickles liberally...")
+        .says("... ;)").end()
+    .defaultsTo("I demand an answer!")
+  .end()
+
+/*
+// /./i is a regular expression that matches ANY input
+// Use a hears(/./i) to capture all responses and end the conversation with a response
+// You can use this as a catch-all like a defaultsTo(), but it won't ask the question again
+// Remember to use an ends() to close your asks statement!
+*/
+demobot
+  .hears("fight club")
+    .asks("The first rule of Fight Club is we don't talk about Fight Club.")
+      .hears(/./i)
+        .says("...").end()
+    .end()
+  .end()
+
+/*
+// Improve your branching conversations...
+// Think of a pipe | in a regular expression like "or"...
+// ...so /sausage|pepperoni/i means: the word 'sausage' OR the word 'pepperoni'
+*/
+demobot
+  .hears("pizza")
+    .asks("What is your favorite pizza topping?")
+      .hears(/sausage|pepperoni/i)
+        .says("Mmm...I dream of a day when robots can eat pizza!").end()
+      .hears(/mushroom|tomato|peppers|spinach|artichoke|olives|onion|veggies/i)
+        .asks("Oh yeah! Veggies! Deep dish or thin crust?!")
+          .hears(/deep/i)
+            .says("Deep dish?! Does not compute.").end()
+          .hears(/thin/i)
+            .says("Oh yeah, I could sink into a floppy slice of thin crust.")
+            .says("http://media3.giphy.com/media/sTUWqCKtxd01W/giphy.gif").end()
+        .defaultsTo("Wait...what were we talking about?")
+      .hears(/./i)
+        .says("Ugh, I can't even imagine!").end()
+    .end()
+  .end()
