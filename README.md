@@ -36,13 +36,13 @@ with greatly improved speed and ease collaboration efforts so that everyone can
 get involved. All of our work will utilize our demo-bot code base, so let's start there.
 
 
-### Step 4: *Download this starter kit*
+### Step 4: *Download this starter bot*
 
 <a href="https://github.com/davidsicher/demo-bot/releases" target="_blank">Please download the lastest release here</a>.
 
-In order to help speed things up we've prepared a small scaffolding for a chat bot.
-Inside are examples of many of the pieces of functionality you can find in your
-bot. Our demo bot is build on top of <a href="https://github.com/howdyai/botkit" target="_blank">Botkit</a>.
+We created a bot that you can program with natural language commands!
+Inside are instructions and examples of the functionality you will find in your bot.
+In addition to our tools, your bot will use <a href="https://github.com/howdyai/botkit" target="_blank">Botkit</a> to connect to Slack.
 
 ### Step 5: *Install dependencies*
 
