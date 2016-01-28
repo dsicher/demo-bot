@@ -52,17 +52,18 @@ demobot
 //  1: You can use hears(), says(), and end() to write the same conversation
 //
 //  || demobot
-//  ||   .hears("well hello demo-bot")
+//  ||   .hears(["well hello demo-bot"])
 //  ||     .says("what's good human?").end()
 //  ||   .end()
 //
 //    TIP: Remember to close your opening hears() statement with the keyword end()
 //    TIP: Remember to close each chain of says() statements with the keyword end()
+//    TIP: Put your trigger word in an array aka ["trigger"] to ignore capitalization
 //
 //  2: With hears(), says(), and end() you can also chain responses together!
 //
 //  || demobot
-//  ||   .hears("i'm talking to you")
+//  ||   .hears(["im talking to you"])
 //  ||     .says("are you talkin to me?")
 //  ||     .says("are you talkin to me?!")
 //  ||     .says("cause I don't see anybody else here")
@@ -72,7 +73,7 @@ demobot
 //-----------------------------------------------------------------------------------------------------------*/
 
 demobot
-  .hears("im talking to you")
+  .hears(["im talking to you"])
     .says("Are you talkin to me?")
     .says("Are you talkin to me?!")
     .says("'Cause I don't see anybody else here")
@@ -90,29 +91,31 @@ demobot
 //     Your robot will listen for any responses you write in hears().
 //
 //  || demobot
-//  ||   .hears("ice cream")
+//  ||   .hears(["ice cream","dessert"])
 //  ||     .says("did someone say ice cream? let's talk.")
 //  ||     .asks("chocolate or vanilla?")
-//  ||       .hears("chocolate")
+//  ||       .hears(["chocolate"])
 //  ||         .says("my favorite!")
 //  ||         .says("your the best!!!").end()
-//  ||       .hears("vanilla")
+//  ||       .hears(["vanilla"])
 //  ||         .says("wrong!").end()
 //  ||     .end()
 //  ||   .end();
 //
 //    TIP: Remember to close each asks() statement with the keyword end()
+//    TIP: Put multiple trigger words in your hears(), surrounded by brackets,
+//            to listen for all of them aka hears(["trigger one", "trigger two"])
 //
 //-----------------------------------------------------------------------------------------------------------*/
 
 demobot
-  .hears("ice cream")
+  .hears(["ice cream", "dessert"])
     .says("Did someone say ice cream? Let's talk.")
     .asks("*chocolate* or *vanilla*?")
-      .hears("chocolate")
+      .hears(["chocolate"])
         .says("My favorite!")
         .says("You're the best!!!").end() // ends says() chain
-      .hears("vanilla")
+      .hears(["vanilla"])
         .says("Wrong!").end() // ends says() chain
     .end() // ends asks()
   .end(); // ends conversation
@@ -128,11 +131,11 @@ demobot
 //     get the answers you want!
 //
 //  || demobot
-//  ||   .hears("interrogate")
+//  ||   .hears(["interrogate"])
 //  ||     .asks("TELL ME WHAT I WANT TO KNOW: Beyonce or Bieber?")
-//  ||       .hears("beyonce")
+//  ||       .hears(["beyonce"])
 //  ||         .says("All the single robots! All the single robots!").end()
-//  ||       .hears("beiber")
+//  ||       .hears(["beiber"])
 //  ||         .says("There's a belieber inside every one of us.")
 //  ||         .says("...")
 //  ||         .says("Every.")
@@ -147,11 +150,11 @@ demobot
 //-----------------------------------------------------------------------------------------------------------*/
 
 demobot
-  .hears("interrogate")
+  .hears(["interrogate"])
     .asks("TELL ME WHAT I WANT TO KNOW: *beyonce* or *bieber*?")
-      .hears("beyonce")
+      .hears(["beyonce"])
         .says("All the single robots! All the single robots!").end() // ends says() chain
-      .hears("beiber")
+      .hears(["beiber"])
         .says("There's a belieber inside every one of us.")
         .says("...")
         .says("Every.")
@@ -163,7 +166,7 @@ demobot
 
 /*-------------------------------------------------------------------------------------------------------------
 //
-//                                 Bot Logic Part 5: Scary complicated stuff
+//                                 Bot Logic Part 5: Scary Complicated Stuff
 //                                     -- JUST KIDDING THATS THE END! --
 //
 //                         You have all the tools to build your own conversation bot!
@@ -176,22 +179,22 @@ demobot
 // Write branching conversations...
 */
 demobot
-  .hears("animal")
+  .hears(["animal"])
     .says("I am a total animal FREAK!")
     .asks("Have you ever been to the zoo? *yes* or *no*")
-      .hears("yes")
+      .hears(["yes"])
         .asks("OMG did you like it? yes or no")
-          .hears("yes")
+          .hears(["yes"])
             .says("Its like a funny panda prison!").end()
-          .hears("no")
+          .hears(["no"])
             .says("Every party has a pooper.").end()
         .defaultsTo("Sorry, I'm only listening for a yes or no")
-      .hears("no")
+      .hears(["no"])
         .says("You have to check it out.")
         .asks("When you go, what will you see first? *lions* or *monkeys*?")
-          .hears("lions")
+          .hears(["lions"])
             .says("Roar!").end()
-          .hears("monkeys")
+          .hears(["monkeys"])
             .says("Monkeys are so funky!").end()
         .defaultsTo("I am only listening for lions or monkeys. All other words are 100% jibber-jabber")
     .defaultsTo("Sorry, I'm only listening for a yes or no")
@@ -201,7 +204,7 @@ demobot
 // Respond with an animated gif...
 */
 demobot
-  .hears("dance party")
+  .hears(["dance party"])
     .says("Lets dance!")
     .says("http://33.media.tumblr.com/d59a187d8135623b8f67b0746391711f/tumblr_inline_nsqhezEtjv1t8dzn4_500.gif").end()
   .end()
@@ -210,9 +213,10 @@ demobot
 // Use regular expressions instead of strings for hears()...
 // Here, Hillary and Bernie are case insensitive.
 // Go to regexr.com for more information!
+// TIP: This does not work with the first hears() of a conversation
 */
 demobot
-  .hears("politics")
+  .hears(["politics"])
     .asks("Who would win in a tickle fight: *Hillary* or *Bernie*?")
       .hears(/hillary/i)
         .says("Don't tell Bill!")
@@ -230,7 +234,7 @@ demobot
 // Remember to use an ends() to close your asks statement!
 */
 demobot
-  .hears("fight club")
+  .hears(["fight club"])
     .asks("The first rule of Fight Club is we don't talk about Fight Club.")
       .hears(/./i)
         .says("...").end()
@@ -243,12 +247,12 @@ demobot
 // ...so /sausage|pepperoni/i means: the word 'sausage' OR the word 'pepperoni'
 */
 demobot
-  .hears("pizza")
+  .hears(["pizza"])
     .asks("What is your favorite pizza topping?")
       .hears(/sausage|pepperoni/i)
         .says("Mmm...I dream of a day when robots can eat pizza!").end()
-      .hears(/mushroom|tomato|peppers|spinach|artichoke|olives|onion|veggies/i)
-        .asks("Oh yeah! Veggies! Deep dish or thin crust?!")
+      .hears(/mushroom|tomato|pepper|spinach|artichoke|olive|onion|veggie/i)
+        .asks("Veggies! Deep dish or thin crust?!")
           .hears(/deep/i)
             .says("Deep dish?! Does not compute.").end()
           .hears(/thin/i)

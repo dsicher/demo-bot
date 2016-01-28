@@ -6,11 +6,11 @@
 
 ## At Home Setup
 
-### Step 1: *Install Node.js and Sublime Text*
+### Step 1: *Install Node.js*
 
 <a href="https://nodejs.org/en/" target="_blank">Please download the lastest STABLE version of Node.js here</a>
 
-This will allow us to use the Javascript programming language.
+Node.js will allow us to use the Javascript programming language for our bots.
 
 ### Step 2: *Install Sublime Text*
 
@@ -18,11 +18,14 @@ This will allow us to use the Javascript programming language.
 
 Sublime is the text editor we will use to edit our code and write bots.
 
+After you have installed Sublime Text, drag it to your dock. This will help you easily open your bot for editing.
+
 ### Step 3: *Sign up for Slack*
 
-You should already have completed the registration to Rise of the Bots
-but if you haven't please do so now at the following link:
+If you have not completed your registration for Rise of the Bots, please do so now at the following link:
 <a href="http://join.riseofthebots.net">http://join.riseofthebots.net</a>.
+
+You will receive a confirmation email shortly to join Rise of the Bots on Slack.
 
 ## Let's Begin
 
@@ -30,7 +33,7 @@ We've prepared this document to serve as a short walkthrough that will have you
 up and running by the end of it. In order to create a chatbot we'll be depending
 on a few pieces of existing technology. This will allow us to build our bot
 with greatly improved speed and ease collaboration efforts so that everyone can
-get involved. All of our work will utilize Node.js, so let's start there.
+get involved. All of our work will utilize our demo-bot code base, so let's start there.
 
 
 ### Step 4: *Download this starter kit*
@@ -43,16 +46,22 @@ bot. Our demo bot is build on top of <a href="https://github.com/howdyai/botkit"
 
 ### Step 5: *Install dependencies*
 
-Open a finder window, navigate to Applications > Utilities. There you'll find
-Terminal.app which we'll use to enter commands. First we will enter the project
-folder by typing the following command. Press the enter key when done.
+Press command-spacebar to open Spotlight, type "terminal", and press enter. Alternatively, open a finder window
+and navigate to Applications > Utilities. There you'll find Terminal.app which we'll use to enter commands.
 
-    // IMPORTANT: not copy paste friendly, replace x-x-x with the name of the file that was just downloaded
-    $ cd ~/Downloads/demo-bot-x.x.x
+In your terminal window, type the following, ignoring the dollar sign:
 
-Then we'll complete the installation by typing the following command, also in terminal.
+	$ cd 
+
+In your finder, navigate to your Downloads directory and drag the demo-bot-x.x.x folder into your terminal window.
+
+Press enter.
+
+Then we'll complete the installation by typing the following command, also in terminal:
 
     $ npm install
+
+If you see a dialogue box asking about installing the Xcode CLI tools, click yes.
 
 ### Step 6: *Register your bot*
 
@@ -68,10 +77,13 @@ Copy the token, and keep it handy for the next step.
 
 ### Step 7: *Edit your settings*
 
-Open a text editor and create a file in the root directory of this project called `.env`.
-The file name should include the dot prefix. The entire name of the file is
-`.env`. There is no additional file extension. Type in `token=` then your new
-token so that the contents of the file looks like this:
+Back in the finder, drag the demo-bot-x.x.x folder onto Sublime Text in your dock.
+
+In the left column, control-click on the root directory of this project and
+create a new file. Save the file and name it ".env".  The file name should include
+the dot prefix. Click "yes" if you get a dialogue box about filenames beginning with a
+period. In the file, type "token=" and paste your slack token from Step 6 so that the
+contents of the file looks like this:
 
     token=xoxb-fffffffffff-PfN6HCc7L6kVHqTU3eTS1Csc
 
