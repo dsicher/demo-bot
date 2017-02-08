@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd `dirname $0`
+
+if ! grep "^token=" .env
+then
+  echo "Please enter your token number"
+  read token
+  echo "token=$token" >> .env
+fi
+
+make run
