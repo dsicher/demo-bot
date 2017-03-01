@@ -23,6 +23,3 @@ docker-compose-up:
 	docker-compose -f docker-compose.yml up --remove-orphans
 
 up run: build docker-compose-up
-
-tail:
-	docker-compose exec -T prototon npm run postserver
