@@ -55,10 +55,13 @@ Next we want to connect your bot to Slack! As a first step, register your bot.
 Make sure you've logged into [Rise of the Bots](https://riseofthebots.slack.com/).
 Then visit the custom integrations page at
 [https://slack.com/apps/manage/custom-integrations](https://slack.com/apps/manage/custom-integrations)
-Click "Build your own" in the top right navigation, then "Make a Custom
-Integration", and finally "Bots". Give your bot a username and click "Add Bot
-integration". On the following screen you'll see a field called "API Token".
-Copy the token, and keep it handy for the next step.
+
++ Click "Bots".
++ Click "Add Configuration".
++ Enter a username.
++ Click "Add bot integration".
++ Collect your token. Hang on to this, we'll need it in a minute.
++ Add any relevant information to the profile of your bot.
 
 ### Step 8: *SHIP IT*
 
