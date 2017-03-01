@@ -4,7 +4,7 @@
 
 ![](http://i.giphy.com/osicrp6ErKw9i.gif)
 
-## At Home Setup
+## Tool Setup
 
 ### Step 1: *Install Docker*
 
@@ -24,8 +24,7 @@ easily open your bot for editing.
 
 ### Step 3: *Sign up for Slack*
 
-If you have not completed your registration for Rise of the Bots, please do so
-now at the following link:
+Please complete your registration at the following link:
 [http://join.riseofthebots.net](http://join.riseofthebots.net)
 
 You will receive a confirmation email shortly to join Rise of the Bots on Slack.
