@@ -1,13 +1,15 @@
 {
   "name": "demo-bot",
-  "version": "0.1.3",
+  "version": "0.3.0",
   "description": "A demo bot, showcasing the botkit API",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node ./node_modules/.bin/pm2-docker start pm2.config.js --watch",
+    "poststart": "node ./node_modules/.bin/pm2 logs --timestamp"
   },
   "author": "",
   "dependencies": {
-    "proto-bot": "^0.3.0"
+    "pm2": "^2.4.0",
+    "proto-bot": "~0.2.0"
   }
 }
