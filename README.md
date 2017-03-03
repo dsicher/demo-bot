@@ -8,7 +8,7 @@
 
 ### Step 1: *Install Docker*
 
-[Get docker here](https://www.docker.com/products/docker).
+[Get docker here](https://store.docker.com/search?type=edition&offering=community).
 
 Please follow the steps on screen to install Docker. There are three installation
 methods we will be supporting, Mac, Linux, and Windows.
