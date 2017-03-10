@@ -8,14 +8,29 @@
 ## Tooling
 
 
-### Episode IV - var a = new Hope(); *(Sign up for Slack)*
+### Episode IV - var a = new Hope(); *(Install Docker)*
+[Get docker here](https://store.docker.com/search?type=edition&offering=community).
+Please follow the steps on screen to install Docker. There are two installation
+methods we will be supporting, Mac and Linux. If you happen to be a Windows user
+we'll do our best to support you too. Please complete the installation and
+proceed to the next step.
+
+Once ready, [please download the lastest release here](https://github.com/davidsicher/demo-bot/releases).
+We created a bot that you can program with natural language commands!
+Inside are instructions and examples of the functionality you can program with
+your bot.
+
+Then double click the `INSTALL` file found inside of the downloaded folder.
+
+
+### Episode V - The Empire Strikes Branch: *(Sign up for Slack)*
 Please complete your registration at the following link:
 [http://join.riseofthebots.net](http://join.riseofthebots.net)
 You will receive a confirmation email shortly to join Rise of the Bots on Slack.
 
 
-### Episode V - The Empire Strikes Branch: *(Register your bot)*
-Later we will want to connect your bot to Slack. As a first step, let's create
+### Episode VI - Return of the Sed -i: *(Register your bot)*
+Now we will want to connect your bot to Slack. As a first step, let's create
 the integration point. Make sure you've logged into
 [Rise of the Bots](https://riseofthebots.slack.com/). Then visit the custom
 integrations page at
@@ -30,21 +45,8 @@ integrations page at
   You can come back to edit the profile later as the persona becomes more tangible.
 
 
-### Episode VI - Return of the Sed -i: *(Install Docker)*
-[Get docker here](https://store.docker.com/search?type=edition&offering=community).
-Please follow the steps on screen to install Docker. There are two installation
-methods we will be supporting, Mac and Linux. If you happen to be a Windows user
-we'll do our best to support you too. Please complete the installation and
-proceed to the next step.
-
-
-### Episode I - The Prototon Menace: *(Get the latest release of our starter kit)*
+### Episode I - The Prototon Menace: *(LAUNCHING)*
 **You should complete the previous step before attempting this one.**
-
-Once ready, [please download the lastest release here](https://github.com/davidsicher/demo-bot/releases).
-We created a bot that you can program with natural language commands!
-Inside are instructions and examples of the functionality you can program with
-your bot.
 
 Double click the `LAUNCH` file found in the downloaded folder. A terminal window
 will open up and you will be prompted to enter your slack token as a next step.
