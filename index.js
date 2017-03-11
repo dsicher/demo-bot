@@ -217,7 +217,7 @@ demobot
 // TIP: This does not work with the first hears() of a conversation
 */
 demobot
-  .hears(["politics"])
+  .hears(["comic"])
     .asks("Who would win in a tickle fight: *Batman* or *Superman*?")
       .hears(/batman/i)
         .says("Don't tell Lois Lane!")
