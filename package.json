@@ -10,6 +10,6 @@
   "author": "",
   "dependencies": {
     "pm2": "^2.4.0",
-    "proto-bot": "~0.3.0"
+    "proto-bot": "~0.3.1"
   }
 }

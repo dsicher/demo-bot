@@ -1,3 +1,4 @@
+var http = require('http');
 var protobot = require('proto-bot');
 
 var demobot = new protobot({
@@ -263,3 +264,26 @@ demobot
         .says("Ugh, I can't even imagine!").end()
     .end()
   .end()
+
+
+
+demobot
+  .hears('weather')
+    .says(function(message) {
+      var city_name = 'Austin';
+
+      return http.get({
+        host: 'api.openweathermap.org',
+        path: `/data/2.5/weather?q=${city_name}&appid=${process.env.WEATHER_API}`
+      }, function(response) {
+        var body = '';
+        response.on('data', function(d) { body += d; });
+        response.on('end', function() {
+          var parsed = JSON.parse(body);
+          console.log(parsed.weather[0].description)
+          return parsed.weather[0].description;
+        });
+      });
+
+    }).end()
+  .end();
