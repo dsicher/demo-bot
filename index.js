@@ -1,4 +1,4 @@
-var http = require('http');
+// var http = require('http');
 var protobot = require('proto-bot');
 
 var demobot = new protobot({
@@ -265,25 +265,31 @@ demobot
     .end()
   .end()
 
+/*
+// Integrate with internal logic
+*/
 
+var card_magic = require('./behaviors/card_magic');
+
+demobot.hears(['new attribute'])
+    .says(card_magic.getAttribute).end()
+  .end();
+
+demobot.hears(['new context'])
+    .says(card_magic.getContext).end()
+  .end();
+
+demobot.hears(['new inspiration'])
+    .says(card_magic.getInspiration).end()
+  .end();
+
+/*
+// Integrate with external APIs
+*/
+
+var weather_magic = require('./behaviors/weather_magic');
 
 demobot
   .hears('weather')
-    .says(function(message) {
-      var city_name = 'Austin';
-
-      return http.get({
-        host: 'api.openweathermap.org',
-        path: `/data/2.5/weather?q=${city_name}&appid=${process.env.WEATHER_API}`
-      }, function(response) {
-        var body = '';
-        response.on('data', function(d) { body += d; });
-        response.on('end', function() {
-          var parsed = JSON.parse(body);
-          console.log(parsed.weather[0].description)
-          return parsed.weather[0].description;
-        });
-      });
-
-    }).end()
+    .says(weather_magic.getCurrentWeather).end()
   .end();

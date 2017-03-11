@@ -22,4 +22,4 @@ build:
 docker-compose-up:
 	docker-compose -f docker-compose.yml up --remove-orphans
 
-up run: build docker-compose-up
+up run: down build docker-compose-up

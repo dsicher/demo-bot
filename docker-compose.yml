@@ -9,6 +9,7 @@ services:
       - "80:8080"
     volumes:
       - "./index.js:/src/index.js"
+      - "./behaviors/:/src/behaviors"
       - prototon_node_modules:/src/node_modules/
 volumes:
   prototon_node_modules: {}

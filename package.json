@@ -4,12 +4,12 @@
   "description": "A demo bot, showcasing the botkit API",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node_modules/.bin/pm2-docker start pm2.config.js --watch",
-    "poststart": "node ./node_modules/.bin/pm2 logs --timestamp"
+    "start": "pm2-docker start pm2.config.js --watch",
+    "poststart": "pm2 logs --timestamp"
   },
   "author": "",
   "dependencies": {
     "pm2": "^2.4.0",
-    "proto-bot": "~0.3.1"
+    "proto-bot": "~0.3.2"
   }
 }
