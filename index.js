@@ -212,18 +212,18 @@ demobot
 
 /*
 // Use regular expressions instead of strings for hears()...
-// Here, Hillary and Bernie are case insensitive.
+// Here, Batman and Superman are case insensitive.
 // Go to regexr.com for more information!
 // TIP: This does not work with the first hears() of a conversation
 */
 demobot
   .hears(["politics"])
-    .asks("Who would win in a tickle fight: *Hillary* or *Bernie*?")
-      .hears(/hillary/i)
-        .says("Don't tell Bill!")
+    .asks("Who would win in a tickle fight: *Batman* or *Superman*?")
+      .hears(/batman/i)
+        .says("Don't tell Lois Lane!")
         .says("hehehe").end()
-      .hears(/bernie/i)
-        .says("Totally agree. He gives tickles liberally...")
+      .hears(/Superman/i)
+        .says("Totally agree. Just needs a telephone booth...")
         .says("... ;)").end()
     .defaultsTo("I demand an answer!")
   .end()
