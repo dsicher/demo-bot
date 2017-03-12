@@ -1,6 +1,6 @@
 {
   "name": "demo-bot",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A demo bot, showcasing the botkit API",
   "main": "index.js",
   "scripts": {
