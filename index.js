@@ -1,4 +1,3 @@
-// var http = require('http');
 var protobot = require('proto-bot');
 
 var demobot = new protobot({
@@ -266,7 +265,10 @@ demobot
   .end()
 
 /*
-// Integrate with internal logic
+// Integrate with your own internal logic
+//
+// Write your bot's actions in the 'behavior' directory
+// Any function that returns a string can be passed into .says()
 */
 
 var card_magic = require('./behaviors/card_magic');
@@ -285,6 +287,12 @@ demobot.hears(['new inspiration'])
 
 /*
 // Integrate with external APIs
+//
+// Functions in .says() take a conversation object as an argument
+// The conversation object contains data that you can use to create smarter services
+// Examine the conversation object to see what it contains
+// To get started, look in ./behaviors/weather_magic to see how we integrated
+// the OpenWeather API
 */
 
 var weather_magic = require('./behaviors/weather_magic');
