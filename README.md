@@ -1,6 +1,4 @@
-## Welcome to Designing Conversations: Rise of the Bots
-
-###[SXSW Session Information](http://schedule.sxsw.com/2017/events/PP66459)
+## Welcome to Designing Intelligence and Trust With Chatbots
 
 ![](http://i.giphy.com/osicrp6ErKw9i.gif)
 
@@ -15,12 +13,21 @@ methods we will be supporting, Mac and Linux. If you happen to be a Windows user
 we'll do our best to support you too. Please complete the installation and
 proceed to the next step.
 
-Once ready, [please download the lastest release here](https://github.com/davidsicher/demo-bot/releases).
+Once ready, [please download the lastest release here](https://github.com/davidsicher/demo-bot/releases/latest)
+and unzip it.
 We created a bot that you can program with natural language commands!
 Inside are instructions and examples of the functionality you can program with
 your bot.
 
 Then double click the `INSTALL` file found inside of the downloaded folder.
+
+***Windows Users:***
+Double clicking the `INSTALL` file will not run on your system.
+You will need to open your preferred shell, (ie: Windows PowerShell) and
+change into the downloaded release directory and run the following command.
+
+    $ cd H:\Downloads\demo-bot-0.3.X
+    $ docker-compose build
 
 
 ### Episode V - The Empire Strikes Branch: *(Sign up for Slack)*
@@ -64,13 +71,31 @@ At the very end you should see a line that reads as follows:
 Check in Slack to see if your Bot is online and send them a message. For now ask
 them for help by sending a message that simply says `help`.
 
+***Windows Users:***
+The `LAUNCH` file will not run on your system. You will first need to create a
+file named `.env` including the period, located in the demo-bot folder.
+The contents of the file should resemble what follows, updated with your
+credentials.
+
+    token=xoxb-12312312312-XXXXXXXXXXXXXXXXXXXXXXXX
+    WEATHER_API=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+You will then need to open your preferred shell, (ie: Windows PowerShell) and
+change into the downloaded release directory and run the following command.
+
+    $ cd H:\Downloads\demo-bot-0.3.X
+    $ docker-compose -f docker-compose.yml up --remove-orphans
+
+To shut it down you can run the following from the appropriate directory.
+
+    $ docker-compose down
+
 
 ### Episode II - The Git Clone Wars: *(Install a Text Editor)*
-[Install Sublime Text](http://www.sublimetext.com)
+Install a text editor, such as [Atom](https://atom.io/)
 
-Sublime is the text editor we will use to edit our code and write bots.
-
-After you have installed Sublime Text, drag it to your dock. This will help you
+After you have installed Atom, drag it to your dock. This will help you
 easily open your bot for editing.
 
 
